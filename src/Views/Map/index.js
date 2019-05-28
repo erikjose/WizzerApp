@@ -1,13 +1,26 @@
-import React, { Fragment } from 'react';
+import React, { Component } from 'react';
+import { Text, View } from 'react-native';
+import PropTypes from 'prop-types';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import { Text } from 'react-native';
+const TabIcon = ({ tintColor }) => <Icon name="magnify" size={20} color={tintColor} />;
 
-// import { Container } from './styles';
+TabIcon.propTypes = {
+  tintColor: PropTypes.string.isRequired,
+};
 
-const Map = () => (
-  <Fragment>
-    <Text>App Wizzer</Text>
-  </Fragment>
-);
+export default class Map extends Component {
+  static navigationOptions = {
+    tabBarIcon: TabIcon,
+  };
 
-export default Map;
+  state = {};
+
+  render() {
+    return (
+      <View>
+        <Text> Mapa </Text>
+      </View>
+    );
+  }
+}
