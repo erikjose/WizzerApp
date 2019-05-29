@@ -1,14 +1,45 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Text } from 'react-native';
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
+import logo from '~/assets/logo.png';
+
+import {
+  Container, Header, Logo, Content, SectionTitle, SectionItem, styles,
+} from './styles';
 
 // import { Container } from './styles';
 
 const More = () => (
-  <View>
-    <Text>More</Text>
-  </View>
+  <Container>
+    <Header>
+      <Logo source={logo} resizeMode="contain" resizeMethod="scale" />
+    </Header>
+    <Content>
+      <SectionTitle>
+        <Text style={styles.text}>Sobre o Wizzer</Text>
+      </SectionTitle>
+      <SectionItem>
+        <Text style={styles.text}>Termos de uso</Text>
+      </SectionItem>
+      <SectionItem>
+        <Text style={styles.text}>Política de privacidade</Text>
+      </SectionItem>
+      <SectionTitle>
+        <Text style={styles.text}>Sobre o aplicativo</Text>
+      </SectionTitle>
+      <SectionItem>
+        <Text style={styles.text}>Avalie este aplicativo</Text>
+      </SectionItem>
+      <SectionTitle>
+        <Text style={styles.text}>Conta</Text>
+      </SectionTitle>
+      <SectionItem>
+        <Text style={styles.text}>Cadastre-se</Text>
+      </SectionItem>
+    </Content>
+  </Container>
 );
 
 const TabIcon = ({ tintColor }) => <Icon name="dots-vertical" size={20} color={tintColor} />;
