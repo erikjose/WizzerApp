@@ -3,6 +3,10 @@ import { Text, View } from 'react-native';
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
+import Header from '~/components/Header';
+import Filters from '~/components/Filters';
+import MapGoogle from '~/components/Map';
+
 const TabIcon = ({ tintColor }) => <Icon name="magnify" size={20} color={tintColor} />;
 
 TabIcon.propTypes = {
@@ -18,8 +22,10 @@ export default class Map extends Component {
 
   render() {
     return (
-      <View>
-        <Text> Mapa </Text>
+      <View style={{ flex: 1 }}>
+        <Header />
+        <Filters />
+        <MapGoogle />
       </View>
     );
   }

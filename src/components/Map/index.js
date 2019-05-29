@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import MapView from 'react-native-maps';
+
+import { Container, styles } from './styles';
 
 export default class MapGoogle extends Component {
   state = {};
 
   render() {
     return (
-      <View>
-        <Text> textInComponent </Text>
-      </View>
+      <Container>
+        <MapView style={styles.mapView} />
+      </Container>
     );
   }
 }

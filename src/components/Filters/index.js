@@ -6,7 +6,7 @@ export default class Filters extends Component {
 
   render() {
     return (
-      <View>
+      <View style={{ height: 55, backgroundColor: '#fff' }}>
         <Text> Filters </Text>
       </View>
     );
