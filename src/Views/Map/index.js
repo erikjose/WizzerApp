@@ -7,6 +7,8 @@ import Header from '~/components/Header';
 import Filters from '~/components/Filters';
 import MapGoogle from '~/components/Map';
 
+import { Container } from './styles';
+
 const TabIcon = ({ tintColor }) => <Icon name="magnify" size={20} color={tintColor} />;
 
 TabIcon.propTypes = {
@@ -22,11 +24,11 @@ export default class Map extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <Container>
         <Header />
         <Filters />
         <MapGoogle />
-      </View>
+      </Container>
     );
   }
 }

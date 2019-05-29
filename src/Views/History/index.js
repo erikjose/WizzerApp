@@ -3,12 +3,12 @@ import { View, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-// import { Container } from './styles';
+import { Container } from './styles';
 
 const History = () => (
-  <View>
+  <Container>
     <Text>History</Text>
-  </View>
+  </Container>
 );
 
 const TabIcon = ({ tintColor }) => (
