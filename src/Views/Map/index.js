@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -25,9 +25,9 @@ export default class Map extends Component {
   render() {
     return (
       <Container>
-        <Header />
-        <Filters />
         <MapGoogle />
+        <Filters />
+        <Header />
       </Container>
     );
   }

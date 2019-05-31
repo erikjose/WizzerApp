@@ -4,6 +4,7 @@ import styled from 'styled-components';
 export const styles = StyleSheet.create({
   mapView: {
     flex: 1,
+    zIndex: -1,
   },
 });
 
