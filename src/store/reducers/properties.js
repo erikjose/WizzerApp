@@ -2,7 +2,7 @@ const INITIAL_STATE = {
   property: [
     {
       id: '1',
-      transation: 'Alugar',
+      transation: 'Comprar',
       image: require('~/assets/placeholder.jpg'),
       price: 'R$ 750,00',
       address: 'Rua Juvenal Cardoso',
@@ -26,7 +26,7 @@ const INITIAL_STATE = {
     },
     {
       id: '3',
-      transation: 'Alugar',
+      transation: 'Comprar',
       image: require('~/assets/placeholder.jpg'),
       price: 'R$ 750,00',
       address: 'Rua Juvenal Cardoso',
@@ -50,7 +50,7 @@ const INITIAL_STATE = {
     },
     {
       id: '5',
-      transation: 'Alugar',
+      transation: 'Comprar',
       image: require('~/assets/placeholder.jpg'),
       price: 'R$ 750,00',
       address: 'Rua Juvenal Cardoso',

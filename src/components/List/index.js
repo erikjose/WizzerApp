@@ -21,14 +21,14 @@ const MapGoogle = ({ property }) => (
   <Container
     data={property}
     renderItem={({ item }) => (
-      <ListItem>
+      <ListItem onPress={() => {}} transaction={item.transation}>
         <HeaderItem>
           <ItemImage
             source={require('~/assets/placeholder.jpg')}
             resizeMethod="resize"
             resizeMode="cover"
           />
-          <TransactionBox>
+          <TransactionBox transaction={item.transation}>
             <TransactionText>{item.transation}</TransactionText>
           </TransactionBox>
         </HeaderItem>
@@ -44,6 +44,7 @@ const MapGoogle = ({ property }) => (
         </InfoBox>
       </ListItem>
     )}
+    keyExtractor={item => item.id}
   />
 );
 

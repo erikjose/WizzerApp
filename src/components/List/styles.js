@@ -32,14 +32,14 @@ export const ListItem = styled.TouchableOpacity.attrs({
   width: ${metrics.screenWidth * 0.9}px;
   height: 200px;
   background: ${colors.white};
-  border-bottom-color: ${colors.secundary};
+  border-bottom-color: ${props => (props.transaction === 'Comprar' ? `${colors.primary}` : `${colors.secundary}`)};
   border-bottom-width: 3px;
   border-style: solid;
   margin: 0 ${metrics.screenWidth * 0.015}px;
-  shadow-color: #000;
+  shadow-color: ${colors.darker};
   shadow-offset: 0px 0px;
-  shadow-opacity: 0.8;
-  shadow-radius: 5;
+  shadow-opacity: 0.4;
+  shadow-radius: 3;
   elevation: 5;
 `;
 
@@ -54,7 +54,7 @@ export const ItemImage = styled.Image`
 
 export const TransactionBox = styled.View`
   padding: 10px 20px;
-  background: ${colors.secundary};
+  background: ${props => (props.transaction === 'Comprar' ? `${colors.primary}` : `${colors.secundary}`)};
   justify-content: center;
   align-items: center;
   position: absolute;
@@ -65,6 +65,7 @@ export const TransactionBox = styled.View`
 export const TransactionText = styled.Text`
   font-size: 14px;
   color: ${colors.white};
+  font-weight: 500;
 `;
 
 export const InfoBox = styled.View`
