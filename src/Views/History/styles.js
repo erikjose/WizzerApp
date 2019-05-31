@@ -17,6 +17,8 @@ export const Header = styled.View`
   align-items: center;
   flex-direction: row;
   background-color: ${colors.white};
+  border-bottom-color: ${colors.regular};
+  border-bottom-width: ${StyleSheet.hairlineWidth}px;
 `;
 
 export const Title = styled.Text`

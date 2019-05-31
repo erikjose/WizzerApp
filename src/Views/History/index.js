@@ -14,9 +14,9 @@ const History = () => (
       <Title>Buscas salvas</Title>
     </Header>
     <RenderList
-      data={[{ key: 'Varginha' }, { key: 'Alfenas' }]}
+      data={[{ id: Math.random(), key: 'Varginha' }, { id: Math.random(), key: 'Alfenas' }]}
       renderItem={({ item }) => (
-        <RenderItemList>
+        <RenderItemList key={item.id}>
           <TouchableOpacity>
             <RenderTitleList>{item.key}</RenderTitleList>
           </TouchableOpacity>

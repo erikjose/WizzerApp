@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { connect } from 'react-redux';
 
 import {
   Container,
@@ -22,114 +23,37 @@ import {
   CityText,
 } from './styles';
 
-const Highlights = () => (
+const Highlights = ({ property }) => (
   <Container>
     <Header>
       <Title>Destaques</Title>
     </Header>
 
     <RenderList
-      data={[
-        {
-          transation: 'Alugar',
-          image: require('~/assets/placeholder.jpg'),
-          price: 'R$ 750,00',
-          address: 'Rua Juvenal Cardoso',
-          number: 65,
-          neighborhood: 'Belo Horizonte',
-          cep: '37031-215',
-          city: 'Varginha',
-          state: 'MG',
-        },
-        {
-          transation: 'Alugar',
-          image: require('~/assets/placeholder.jpg'),
-          price: 'R$ 750,00',
-          address: 'Rua Juvenal Cardoso',
-          number: 65,
-          neighborhood: 'Belo Horizonte',
-          cep: '37031-215',
-          city: 'Varginha',
-          state: 'MG',
-        },
-        {
-          transation: 'Alugar',
-          image: require('~/assets/placeholder.jpg'),
-          price: 'R$ 750,00',
-          address: 'Rua Juvenal Cardoso',
-          number: 65,
-          neighborhood: 'Belo Horizonte',
-          cep: '37031-215',
-          city: 'Varginha',
-          state: 'MG',
-        },
-        {
-          transation: 'Alugar',
-          image: require('~/assets/placeholder.jpg'),
-          price: 'R$ 750,00',
-          address: 'Rua Juvenal Cardoso',
-          number: 65,
-          neighborhood: 'Belo Horizonte',
-          cep: '37031-215',
-          city: 'Varginha',
-          state: 'MG',
-        },
-        {
-          transation: 'Alugar',
-          image: require('~/assets/placeholder.jpg'),
-          price: 'R$ 750,00',
-          address: 'Rua Juvenal Cardoso',
-          number: 65,
-          neighborhood: 'Belo Horizonte',
-          cep: '37031-215',
-          city: 'Varginha',
-          state: 'MG',
-        },
-        {
-          transation: 'Alugar',
-          image: require('~/assets/placeholder.jpg'),
-          price: 'R$ 750,00',
-          address: 'Rua Juvenal Cardoso',
-          number: 65,
-          neighborhood: 'Belo Horizonte',
-          cep: '37031-215',
-          city: 'Varginha',
-          state: 'MG',
-        },
-      ]}
+      data={property}
       renderItem={({ item }) => (
         <RenderItemList>
           <HeaderItem>
-            <ItemImage />
+            <ItemImage source={item.image} resizeMethod="resize" resizeMode="cover" />
             <TransactionBox>
               <TransactionText>{item.transation}</TransactionText>
             </TransactionBox>
           </HeaderItem>
           <InfoBox>
             <GeneralInfo>
-              <PriceText />
-
-              <PropertyInfo />
+              <PriceText>{item.price}</PriceText>
+              <PropertyInfo>
+                <Text>Details</Text>
+              </PropertyInfo>
             </GeneralInfo>
-
             <AddressInfo>
-              <AddressText>
-                {item.address}
-,
-                {item.number}
-              </AddressText>
-              <CityText>
-                {item.neighborhood}
-                {' '}
--
-                {item.city}
-,
-                {item.state}
-              </CityText>
+              <AddressText>{`${item.address}, ${item.number}`}</AddressText>
+              <CityText>{`${item.neighborhood} - ${item.city}, ${item.state}`}</CityText>
             </AddressInfo>
           </InfoBox>
         </RenderItemList>
       )}
+      keyExtractor={item => item.id}
     />
   </Container>
 );
@@ -144,4 +68,8 @@ Highlights.navigationOptions = {
   tabBarIcon: TabIcon,
 };
 
-export default Highlights;
+const mapStateToProps = state => ({
+  property: state.properties.property,
+});
+
+export default connect(mapStateToProps)(Highlights);
