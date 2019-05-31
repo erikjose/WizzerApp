@@ -1,7 +1,9 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { colors } from '~/styles';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import * as QueryActions from '~/store/actions/query';
 
 import {
   Container, SearchBox, SearchInput, SearchButton,
@@ -32,9 +34,7 @@ const mapStateToProps = state => ({
   uri: state.query,
 });
 
-const mapDispatchToProps = dispatch => ({
-  setQuery: value => dispatch({ type: 'SET_QUERY', query: value }),
-});
+const mapDispatchToProps = dispatch => bindActionCreators(QueryActions, dispatch);
 
 export default connect(
   mapStateToProps,
