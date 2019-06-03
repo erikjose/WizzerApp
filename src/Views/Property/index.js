@@ -5,7 +5,7 @@ import { View, Text } from 'react-native';
 
 const Property = () => (
   <View>
-    <Text>Property</Text>
+    <Text>Jorro</Text>
   </View>
 );
 

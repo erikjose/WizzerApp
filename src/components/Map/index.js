@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import MapView from 'react-native-maps';
+import { withNavigation } from 'react-navigation';
 
 import List from '~/components/List';
 
 import { Container, styles } from './styles';
 
-export default class MapGoogle extends Component {
+class MapGoogle extends Component {
   state = {};
 
   render() {
+    const { navigation } = this.props;
+
     return (
       <Container>
         <MapView
@@ -20,8 +23,10 @@ export default class MapGoogle extends Component {
             longitudeDelta: 0.0421,
           }}
         />
-        <List />
+        <List navigation={navigation} />
       </Container>
     );
   }
 }
+
+export default withNavigation(MapGoogle);
