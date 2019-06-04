@@ -21,7 +21,7 @@ const ListProperty = ({ property, navigation }) => (
   <Container
     data={property}
     renderItem={({ item }) => (
-      <ListItem onPress={() => navigation.navigate('Property')} transaction={item.transation}>
+      <ListItem onPress={() => navigation.navigate('Property')} transaction={item.transation}> 
         <HeaderItem>
           <ItemImage
             source={require('~/assets/placeholder.jpg')}
