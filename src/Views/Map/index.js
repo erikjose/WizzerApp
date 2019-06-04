@@ -27,11 +27,6 @@ export default class Map extends Component {
       <Container>
         <MapGoogle />
         <Filters />
-        {/* <View style={{ height: 55, backgroundColor: 'white' }}>
-          <TouchableOpacity style={{ position: 'absolute', top: 100 }}>
-            <Text>Button</Text>
-          </TouchableOpacity>
-        </View> */}
         <Header />
       </Container>
     );

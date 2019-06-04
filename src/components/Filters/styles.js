@@ -40,10 +40,11 @@ export const FilterItem = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
   z-index: 10;
+  background: ${props => (props.selected ? colors.primary : colors.white)};
 `;
 
 export const FilterItemText = styled.Text`
-  color: ${colors.primary};
+  color: ${props => (props.selected ? colors.white : colors.primary)};
   font-size: 12px;
 `;
 
