@@ -8,4 +8,5 @@ export const Container = styled.View`
   flex: 1;
   padding-top: ${Platform.OS === 'ios' ? getStatusBarHeight() : 0}px;
   flex-direction: column-reverse;
+  background: #fff;
 `;

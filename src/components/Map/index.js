@@ -20,7 +20,7 @@ export default class MapGoogle extends Component {
             longitudeDelta: 0.0421,
           }}
         />
-        <List />
+        {/* <List /> */}
       </Container>
     );
   }

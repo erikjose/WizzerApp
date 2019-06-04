@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, TouchableOpacity, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -27,6 +27,11 @@ export default class Map extends Component {
       <Container>
         <MapGoogle />
         <Filters />
+        {/* <View style={{ height: 55, backgroundColor: 'white' }}>
+          <TouchableOpacity style={{ position: 'absolute', top: 100 }}>
+            <Text>Button</Text>
+          </TouchableOpacity>
+        </View> */}
         <Header />
       </Container>
     );
