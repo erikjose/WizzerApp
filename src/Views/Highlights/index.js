@@ -35,7 +35,7 @@ const Highlights = ({ property }) => (
       renderItem={({ item }) => (
         <RenderItemList transaction={item.transation}>
           <HeaderItem>
-            <ItemImage source={item.image} resizeMethod="resize" resizeMode="cover" />
+            <ItemImage source={item.image[0]} resizeMethod="resize" resizeMode="cover" />
             <TransactionBox transaction={item.transation}>
               <TransactionText>{item.transation}</TransactionText>
             </TransactionBox>
