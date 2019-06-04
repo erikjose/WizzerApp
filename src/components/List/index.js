@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withNavigation } from 'react-navigation';
 
 import {
   Container,
@@ -17,11 +18,16 @@ import {
   CityText,
 } from './styles';
 
+const handleNavigation = (navigation, property) => {
+  console.tron.log(property);
+  navigation.navigate('Property', { property });
+};
+
 const ListProperty = ({ property, navigation }) => (
   <Container
     data={property}
     renderItem={({ item }) => (
-      <ListItem onPress={() => navigation.navigate('Property')} transaction={item.transation}> 
+      <ListItem onPress={() => handleNavigation(navigation, item)} transaction={item.transation}>
         <HeaderItem>
           <ItemImage
             source={require('~/assets/placeholder.jpg')}
@@ -38,8 +44,8 @@ const ListProperty = ({ property, navigation }) => (
             <PropertyInfo />
           </GeneralInfo>
           <AddressInfo>
-            <AddressText>Rua Juvenal Cardoso, 65</AddressText>
-            <CityText>Residencial Belo Horizonte - Varginha, MG</CityText>
+            <AddressText>{`${item.address}, ${item.number}`}</AddressText>
+            <CityText>{`${item.neighborhood} - ${item.city}, ${item.state}`}</CityText>
           </AddressInfo>
         </InfoBox>
       </ListItem>

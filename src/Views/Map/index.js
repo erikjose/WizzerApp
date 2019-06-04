@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, TouchableOpacity, Text } from 'react-native';
+import { StatusBar } from 'react-native';
+
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -25,6 +26,7 @@ export default class Map extends Component {
   render() {
     return (
       <Container>
+        <StatusBar hidden={false} />
         <MapGoogle />
         <Filters />
         <Header />
