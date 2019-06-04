@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StatusBar, Image, Animated } from 'react-native';
+import { StatusBar, Image, View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {
@@ -34,7 +34,7 @@ class Details extends Component {
   render() {
     const { property } = this.props;
     return (
-      <Animated.View style={styles.container}>
+      <View style={styles.container}>
         <StatusBar hidden />
         <ContainerScroll>
           <DetailsContainer>
@@ -92,7 +92,7 @@ class Details extends Component {
             <ButtonProperty>Falar com anunciante</ButtonProperty>
           </ContentButton>
         </ContainerScroll>
-      </Animated.View>
+      </View>
     );
   }
 }

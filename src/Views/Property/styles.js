@@ -10,6 +10,15 @@ export const styles = StyleSheet.create({
   share: {
     color: colors.white,
   },
+  details: {
+    height: '90%',
+    zIndex: 2,
+    position: 'absolute',
+    top: '70%',
+    left: 0,
+    right: 0,
+    backgroundColor: colors.white,
+  },
 });
 
 export const Container = styled.View`
