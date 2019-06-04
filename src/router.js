@@ -1,6 +1,6 @@
 import {
   createAppContainer,
-  createSwitchNavigator,
+  createStackNavigator,
   createBottomTabNavigator,
 } from 'react-navigation';
 
@@ -10,31 +10,38 @@ import Map from '~/Views/Map';
 import Highlights from '~/Views/Highlights';
 import History from '~/Views/History';
 import More from '~/Views/More';
+import Property from '~/Views/Property';
 
 const Route = createAppContainer(
-  createSwitchNavigator({
-    Home: createBottomTabNavigator(
-      {
-        Home: Map,
-        Destaques: Highlights,
-        'Buscas salvas': History,
-        Mais: More,
-      },
-      {
-        tabBarOptions: {
-          showIcon: true,
-          showLabel: true,
-          activeTintColor: colors.primary,
-          inactiveTintColor: colors.regular,
-          style: {
-            padding: 5,
-            height: 55,
-            backgroundColor: colors.white,
+  createStackNavigator(
+    {
+      Home: createBottomTabNavigator(
+        {
+          Home: Map,
+          Destaques: Highlights,
+          'Buscas salvas': History,
+          Mais: More,
+        },
+        {
+          tabBarOptions: {
+            showIcon: true,
+            showLabel: true,
+            activeTintColor: colors.primary,
+            inactiveTintColor: colors.regular,
+            style: {
+              padding: 5,
+              height: 55,
+              backgroundColor: colors.white,
+            },
           },
         },
-      },
-    ),
-  }),
+      ),
+      Property,
+    },
+    {
+      headerMode: 'none',
+    },
+  ),
 );
 
 export default Route;

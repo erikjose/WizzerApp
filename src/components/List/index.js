@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
 import {
@@ -17,18 +17,18 @@ import {
   CityText,
 } from './styles';
 
-const MapGoogle = ({ property }) => (
+const ListProperty = ({ property, navigation }) => (
   <Container
     data={property}
     renderItem={({ item }) => (
-      <ListItem>
+      <ListItem onPress={() => navigation.navigate('Property')} transaction={item.transation}> 
         <HeaderItem>
           <ItemImage
             source={require('~/assets/placeholder.jpg')}
             resizeMethod="resize"
             resizeMode="cover"
           />
-          <TransactionBox>
+          <TransactionBox transaction={item.transation}>
             <TransactionText>{item.transation}</TransactionText>
           </TransactionBox>
         </HeaderItem>
@@ -44,6 +44,7 @@ const MapGoogle = ({ property }) => (
         </InfoBox>
       </ListItem>
     )}
+    keyExtractor={item => item.id}
   />
 );
 
@@ -51,4 +52,4 @@ const mapStateToProps = state => ({
   property: state.properties.property,
 });
 
-export default connect(mapStateToProps)(MapGoogle);
+export default connect(mapStateToProps)(ListProperty);

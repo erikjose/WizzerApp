@@ -21,6 +21,7 @@ import {
   AddressInfo,
   AddressText,
   CityText,
+  DetailItem,
 } from './styles';
 
 const Highlights = ({ property }) => (
@@ -32,10 +33,10 @@ const Highlights = ({ property }) => (
     <RenderList
       data={property}
       renderItem={({ item }) => (
-        <RenderItemList>
+        <RenderItemList transaction={item.transation}>
           <HeaderItem>
             <ItemImage source={item.image} resizeMethod="resize" resizeMode="cover" />
-            <TransactionBox>
+            <TransactionBox transaction={item.transation}>
               <TransactionText>{item.transation}</TransactionText>
             </TransactionBox>
           </HeaderItem>
@@ -43,7 +44,17 @@ const Highlights = ({ property }) => (
             <GeneralInfo>
               <PriceText>{item.price}</PriceText>
               <PropertyInfo>
-                <Text>Details</Text>
+                <DetailItem>
+                  <Text>Teste</Text>
+                </DetailItem>
+
+                <DetailItem>
+                  <Text>Teste</Text>
+                </DetailItem>
+
+                <DetailItem>
+                  <Text>Teste</Text>
+                </DetailItem>
               </PropertyInfo>
             </GeneralInfo>
             <AddressInfo>
