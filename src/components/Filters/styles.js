@@ -32,7 +32,9 @@ export const Container = styled.View`
   flex-direction: row;
 `;
 
-export const FilterItem = styled.TouchableOpacity`
+export const FilterItem = styled.TouchableOpacity.attrs({
+  activeOpacity: 0.8,
+})`
   flex: 1;
   margin: 0 5px;
   height: 40px;
@@ -149,7 +151,9 @@ export const ConfirmButtonText = styled.Text`
   font-size: 14px;
 `;
 
-export const CheckOption = styled.TouchableOpacity`
+export const CheckOption = styled.TouchableOpacity.attrs({
+  activeOpacity: 0.8,
+})`
   border: 1px solid ${colors.primary};
   border-left-width: 0;
   justify-content: center;

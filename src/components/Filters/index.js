@@ -49,28 +49,49 @@ export default class Filters extends Component {
       } else {
         filters.transaction = filters.transaction.filter(item => item !== value);
       }
+    } else if (state) {
+      filters.propertyType.push(value);
     } else {
-      if (state) {
-        filters.propertyType.push(value);
-      } else {
-        filters.propertyType = filters.propertyType.filter(item => item !== value);
-      }
+      filters.propertyType = filters.propertyType.filter(item => item !== value);
     }
 
     this.setState({ filters });
   }
 
-  setCheckbox(state, value) {
+  setBedroom(value) {
     const { filters } = this.state;
-    const filter;
 
-    if (state == 'bedroom') {
-      filter = filters.bedroom;
-    } else if (state == 'bathroom') {
-      filter = filters.bathroom;
+    if (filters.bedroom.includes(value)) {
+      filters.bedroom = filters.bedroom.filter(item => item != value);
     } else {
-      filter = filters.parkingSpace;
+      filters.bedroom.push(value);
     }
+
+    this.setState({ filters });
+  }
+
+  setBathroom(value) {
+    const { filters } = this.state;
+
+    if (filters.bathroom.includes(value)) {
+      filters.bathroom = filters.bathroom.filter(item => item != value);
+    } else {
+      filters.bathroom.push(value);
+    }
+
+    this.setState({ filters });
+  }
+
+  setParkingSpace(value) {
+    const { filters } = this.state;
+
+    if (filters.parkingSpace.includes(value)) {
+      filters.parkingSpace = filters.parkingSpace.filter(item => item != value);
+    } else {
+      filters.parkingSpace.push(value);
+    }
+
+    this.setState({ filters });
   }
 
   render() {
@@ -322,60 +343,108 @@ export default class Filters extends Component {
                 <ContentItemText style={{ fontWeight: '500' }}>Quartos</ContentItemText>
               </ContentItem>
               <ContentItem>
-                <CheckOption style={{ borderLeftWidth: 1 }} selected={filters.bedroom.includes(1)} onPress={() => setCheckbox(1)}>
+                <CheckOption
+                  style={{ borderLeftWidth: 1 }}
+                  selected={filters.bedroom.includes(1)}
+                  onPress={() => this.setBedroom(1)}
+                >
                   <CheckOptionText selected={filters.bedroom.includes(1)}>1</CheckOptionText>
                 </CheckOption>
-                <CheckOption selected={filters.bedroom.includes(2)}>
+                <CheckOption
+                  selected={filters.bedroom.includes(2)}
+                  onPress={() => this.setBedroom(2)}
+                >
                   <CheckOptionText selected={filters.bedroom.includes(2)}>2</CheckOptionText>
                 </CheckOption>
-                <CheckOption selected={filters.bedroom.includes(3)}>
+                <CheckOption
+                  selected={filters.bedroom.includes(3)}
+                  onPress={() => this.setBedroom(3)}
+                >
                   <CheckOptionText selected={filters.bedroom.includes(3)}>3</CheckOptionText>
                 </CheckOption>
-                <CheckOption selected={filters.bedroom.includes(4)}>
+                <CheckOption
+                  selected={filters.bedroom.includes(4)}
+                  onPress={() => this.setBedroom(4)}
+                >
                   <CheckOptionText selected={filters.bedroom.includes(4)}>4</CheckOptionText>
                 </CheckOption>
-                <CheckOption selected={filters.bedroom.includes(5)}>
-                  <CheckOptionText selected={filters.bedroom.includes(5)}>5</CheckOptionText>
+                <CheckOption
+                  selected={filters.bedroom.includes(5)}
+                  onPress={() => this.setBedroom(5)}
+                >
+                  <CheckOptionText selected={filters.bedroom.includes(5)}>5+</CheckOptionText>
                 </CheckOption>
               </ContentItem>
               <ContentItem>
                 <ContentItemText style={{ fontWeight: '500' }}>Banheiros</ContentItemText>
               </ContentItem>
               <ContentItem>
-                <CheckOption style={{ borderLeftWidth: 1 }}>
-                  <CheckOptionText>1</CheckOptionText>
+                <CheckOption
+                  style={{ borderLeftWidth: 1 }}
+                  selected={filters.bathroom.includes(1)}
+                  onPress={() => this.setBathroom(1)}
+                >
+                  <CheckOptionText selected={filters.bathroom.includes(1)}>1</CheckOptionText>
                 </CheckOption>
-                <CheckOption>
-                  <CheckOptionText>2</CheckOptionText>
+                <CheckOption
+                  selected={filters.bathroom.includes(2)}
+                  onPress={() => this.setBathroom(2)}
+                >
+                  <CheckOptionText selected={filters.bathroom.includes(2)}>2</CheckOptionText>
                 </CheckOption>
-                <CheckOption>
-                  <CheckOptionText>3</CheckOptionText>
+                <CheckOption
+                  selected={filters.bathroom.includes(3)}
+                  onPress={() => this.setBathroom(3)}
+                >
+                  <CheckOptionText selected={filters.bathroom.includes(3)}>3</CheckOptionText>
                 </CheckOption>
-                <CheckOption>
-                  <CheckOptionText>4</CheckOptionText>
+                <CheckOption
+                  selected={filters.bathroom.includes(4)}
+                  onPress={() => this.setBathroom(4)}
+                >
+                  <CheckOptionText selected={filters.bathroom.includes(4)}>4</CheckOptionText>
                 </CheckOption>
-                <CheckOption>
-                  <CheckOptionText>5+</CheckOptionText>
+                <CheckOption
+                  selected={filters.bathroom.includes(5)}
+                  onPress={() => this.setBathroom(5)}
+                >
+                  <CheckOptionText selected={filters.bathroom.includes(5)}>5+</CheckOptionText>
                 </CheckOption>
               </ContentItem>
               <ContentItem>
                 <ContentItemText style={{ fontWeight: '500' }}>Vagas</ContentItemText>
               </ContentItem>
               <ContentItem>
-                <CheckOption style={{ borderLeftWidth: 1 }}>
-                  <CheckOptionText>1</CheckOptionText>
+                <CheckOption
+                  style={{ borderLeftWidth: 1 }}
+                  selected={filters.parkingSpace.includes(1)}
+                  onPress={() => this.setParkingSpace(1)}
+                >
+                  <CheckOptionText selected={filters.parkingSpace.includes(1)}>1</CheckOptionText>
                 </CheckOption>
-                <CheckOption>
-                  <CheckOptionText>2</CheckOptionText>
+                <CheckOption
+                  selected={filters.parkingSpace.includes(2)}
+                  onPress={() => this.setParkingSpace(2)}
+                >
+                  <CheckOptionText selected={filters.parkingSpace.includes(2)}>2</CheckOptionText>
                 </CheckOption>
-                <CheckOption>
-                  <CheckOptionText>3</CheckOptionText>
+                <CheckOption
+                  selected={filters.parkingSpace.includes(3)}
+                  onPress={() => this.setParkingSpace(3)}
+                >
+                  <CheckOptionText selected={filters.parkingSpace.includes(3)}>3</CheckOptionText>
                 </CheckOption>
-                <CheckOption>
-                  <CheckOptionText>4</CheckOptionText>
+                <CheckOption
+                  selected={filters.parkingSpace.includes(4)}
+                  onPress={() => this.setParkingSpace(4)}
+                >
+                  <CheckOptionText selected={filters.parkingSpace.includes(4)}>4</CheckOptionText>
                 </CheckOption>
-                <CheckOption>
-                  <CheckOptionText>5+</CheckOptionText>
+                <CheckOption
+                  selected={filters.parkingSpace.includes(5)}
+                  onPress={() => this.setParkingSpace(5)}
+                >
+                  <CheckOptionText selected={filters.parkingSpace.includes(5)}>5+</CheckOptionText>
                 </CheckOption>
               </ContentItem>
               <ContentItem>
@@ -391,6 +460,10 @@ export default class Filters extends Component {
                     marginRight: 5,
                   }}
                   placeholder="0 m²"
+                  onChangeText={(text) => {
+                    filters.area.min = text;
+                    this.setState({ filters });
+                  }}
                 />
                 <ContentItemText
                   style={{
@@ -411,6 +484,10 @@ export default class Filters extends Component {
                     marginLeft: 5,
                   }}
                   placeholder="0m²"
+                  onChangeText={(text) => {
+                    filters.area.max = text;
+                    this.setState({ filters });
+                  }}
                 />
               </ContentItem>
               <ContentItem>
@@ -426,6 +503,10 @@ export default class Filters extends Component {
                     marginRight: 5,
                   }}
                   placeholder="R$ 00,00"
+                  onChangeText={(text) => {
+                    filters.condo.min = text;
+                    this.setState({ filters });
+                  }}
                 />
                 <ContentItemText
                   style={{
@@ -446,6 +527,10 @@ export default class Filters extends Component {
                     marginLeft: 5,
                   }}
                   placeholder="R$ 00,00"
+                  onChangeText={(text) => {
+                    filters.condo.max = text;
+                    this.setState({ filters });
+                  }}
                 />
               </ContentItem>
             </FilterDropdownContent>
@@ -455,7 +540,7 @@ export default class Filters extends Component {
             <FilterCancelButton onPress={() => this.setState({ selectedFilter: null })}>
               <CancelButtonText>Cancelar</CancelButtonText>
             </FilterCancelButton>
-            <FilterConfirmButton>
+            <FilterConfirmButton onPress={() => {}}>
               <ConfirmButtonText>Confirmar</ConfirmButtonText>
             </FilterConfirmButton>
           </FilterDropdownControls>

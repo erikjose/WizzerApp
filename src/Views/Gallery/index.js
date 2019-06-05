@@ -12,11 +12,11 @@ class GalleryMain extends Component {
     const property = navigation.getParam('property');
     console.tron.log(property);
     return (
-      <View>
-        <Text>Galeria</Text>
-        <Image style={{ width: 100, height: 100 }} source={property.image[0]} />
+      <View style={{ flex: 1 }}>
+        {/* <Text>Galeria</Text>
+        <Image style={{ width: 100, height: 100 }} source={property.image[0]} /> */}
         <Gallery
-          style={{ flex: 1, backgroundColor: 'black' }}
+          style={{ backgroundColor: 'black', flex: 1 }}
           images={[
             {
               source: property.image[0],
