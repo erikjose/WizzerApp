@@ -27,10 +27,25 @@ import {
 export default class Filters extends Component {
   state = {
     selectedFilter: null,
+    filters: {
+      transaction: [],
+      propertyType: [],
+      price: { min: 0, max: 0 },
+      condo: { min: 0, max: 0 },
+      area: { min: 0, max: 0 },
+      bedroom: [],
+      bathroom: [],
+      parkingSpace: [],
+      daysOnWizzer: 0,
+    },
+  };
+
+  setFilters = (filters) => {
+    this.setState({ filters });
   };
 
   render() {
-    const { selectedFilter } = this.state;
+    const { selectedFilter, filters } = this.state;
     let dropdown;
     if (selectedFilter != null) {
       dropdown = (
@@ -47,7 +62,7 @@ export default class Filters extends Component {
                   <ContentItemText>À venda</ContentItemText>
                 </View>
                 <ContentItemControl>
-                  <Switch />
+                  <Switch onValueChange={() => {}}/>
                 </ContentItemControl>
               </ContentItem>
               <ContentItem>
