@@ -32,7 +32,9 @@ export const Container = styled.View`
   flex-direction: row;
 `;
 
-export const FilterItem = styled.TouchableOpacity`
+export const FilterItem = styled.TouchableOpacity.attrs({
+  activeOpacity: 0.8,
+})`
   flex: 1;
   margin: 0 5px;
   height: 40px;
@@ -149,16 +151,19 @@ export const ConfirmButtonText = styled.Text`
   font-size: 14px;
 `;
 
-export const CheckOption = styled.TouchableOpacity`
+export const CheckOption = styled.TouchableOpacity.attrs({
+  activeOpacity: 0.8,
+})`
   border: 1px solid ${colors.primary};
   border-left-width: 0;
   justify-content: center;
   align-items: center;
   height: 30px;
   flex: 1;
+  background: ${props => (props.selected ? colors.primary : 'transparent')};
 `;
 
 export const CheckOptionText = styled.Text`
-  color: ${colors.primary};
+  color: ${props => (props.selected ? colors.white : colors.primary)};
   font-size: 13px;
 `;

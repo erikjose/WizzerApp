@@ -28,7 +28,7 @@ export default class Filters extends Component {
   state = {
     selectedFilter: null,
     filters: {
-      transaction: [],
+      transaction: ['vender', 'alugar'],
       propertyType: [],
       price: { min: 0, max: 0 },
       condo: { min: 0, max: 0 },
@@ -40,9 +40,59 @@ export default class Filters extends Component {
     },
   };
 
-  setFilters = (filters) => {
+  setSwitch(state, value) {
+    const { filters } = this.state;
+
+    if (value === 'alugar' || value === 'vender') {
+      if (state) {
+        filters.transaction.push(value);
+      } else {
+        filters.transaction = filters.transaction.filter(item => item !== value);
+      }
+    } else if (state) {
+      filters.propertyType.push(value);
+    } else {
+      filters.propertyType = filters.propertyType.filter(item => item !== value);
+    }
+
     this.setState({ filters });
-  };
+  }
+
+  setBedroom(value) {
+    const { filters } = this.state;
+
+    if (filters.bedroom.includes(value)) {
+      filters.bedroom = filters.bedroom.filter(item => item != value);
+    } else {
+      filters.bedroom.push(value);
+    }
+
+    this.setState({ filters });
+  }
+
+  setBathroom(value) {
+    const { filters } = this.state;
+
+    if (filters.bathroom.includes(value)) {
+      filters.bathroom = filters.bathroom.filter(item => item != value);
+    } else {
+      filters.bathroom.push(value);
+    }
+
+    this.setState({ filters });
+  }
+
+  setParkingSpace(value) {
+    const { filters } = this.state;
+
+    if (filters.parkingSpace.includes(value)) {
+      filters.parkingSpace = filters.parkingSpace.filter(item => item != value);
+    } else {
+      filters.parkingSpace.push(value);
+    }
+
+    this.setState({ filters });
+  }
 
   render() {
     const { selectedFilter, filters } = this.state;
@@ -62,7 +112,10 @@ export default class Filters extends Component {
                   <ContentItemText>À venda</ContentItemText>
                 </View>
                 <ContentItemControl>
-                  <Switch onValueChange={() => {}}/>
+                  <Switch
+                    onValueChange={value => this.setSwitch(value, 'vender')}
+                    value={filters.transaction.includes('vender')}
+                  />
                 </ContentItemControl>
               </ContentItem>
               <ContentItem>
@@ -71,7 +124,10 @@ export default class Filters extends Component {
                   <ContentItemText>Para alugar</ContentItemText>
                 </View>
                 <ContentItemControl>
-                  <Switch />
+                  <Switch
+                    onValueChange={value => this.setSwitch(value, 'alugar')}
+                    value={filters.transaction.includes('alugar')}
+                  />
                 </ContentItemControl>
               </ContentItem>
             </FilterDropdownContent>
@@ -93,6 +149,10 @@ export default class Filters extends Component {
                     marginRight: 5,
                   }}
                   placeholder="R$ 00,00"
+                  onChangeText={(text) => {
+                    filters.price.min = text;
+                    this.setState({ filters });
+                  }}
                 />
                 <ContentItemText
                   style={{
@@ -113,6 +173,10 @@ export default class Filters extends Component {
                     marginLeft: 5,
                   }}
                   placeholder="R$ 00,00"
+                  onChangeText={(text) => {
+                    filters.price.max = text;
+                    this.setState({ filters });
+                  }}
                 />
               </ContentItem>
             </FilterDropdownContent>
@@ -129,43 +193,71 @@ export default class Filters extends Component {
               </ContentItem>
               <ContentItem>
                 <View style={styles.transactionText}>
-                  <Switch style={{ marginRight: 5 }} />
+                  <Switch
+                    style={{ marginRight: 5 }}
+                    onValueChange={value => this.setSwitch(value, 'apartment')}
+                    value={filters.propertyType.includes('apartment')}
+                  />
                   <ContentItemText>Apartamento</ContentItemText>
                 </View>
               </ContentItem>
               <ContentItem>
                 <View style={styles.transactionText}>
-                  <Switch style={{ marginRight: 5 }} />
+                  <Switch
+                    style={{ marginRight: 5 }}
+                    onValueChange={value => this.setSwitch(value, 'house')}
+                    value={filters.propertyType.includes('house')}
+                  />
                   <ContentItemText>Casa</ContentItemText>
                 </View>
               </ContentItem>
               <ContentItem>
                 <View style={styles.transactionText}>
-                  <Switch style={{ marginRight: 5 }} />
+                  <Switch
+                    style={{ marginRight: 5 }}
+                    onValueChange={value => this.setSwitch(value, 'condo')}
+                    value={filters.propertyType.includes('condo')}
+                  />
                   <ContentItemText>Casa de Condomínio</ContentItemText>
                 </View>
               </ContentItem>
               <ContentItem>
                 <View style={styles.transactionText}>
-                  <Switch style={{ marginRight: 5 }} />
+                  <Switch
+                    style={{ marginRight: 5 }}
+                    onValueChange={value => this.setSwitch(value, 'farmhouse')}
+                    value={filters.propertyType.includes('farmhouse')}
+                  />
                   <ContentItemText>Chácara</ContentItemText>
                 </View>
               </ContentItem>
               <ContentItem>
                 <View style={styles.transactionText}>
-                  <Switch style={{ marginRight: 5 }} />
+                  <Switch
+                    style={{ marginRight: 5 }}
+                    onValueChange={value => this.setSwitch(value, 'roof')}
+                    value={filters.propertyType.includes('roof')}
+                  />
                   <ContentItemText>Cobertura</ContentItemText>
                 </View>
               </ContentItem>
               <ContentItem>
                 <View style={styles.transactionText}>
-                  <Switch style={{ marginRight: 5 }} />
+                  <Switch
+                    style={{ marginRight: 5 }}
+                    onValueChange={value => this.setSwitch(value, 'flat')}
+                    value={filters.propertyType.includes('flat')}
+                  />
                   <ContentItemText>Flat</ContentItemText>
                 </View>
               </ContentItem>
               <ContentItem>
                 <View style={styles.transactionText}>
-                  <Switch style={{ marginRight: 5 }} />
+                  <Switch
+                    style={{ marginRight: 5 }}
+                    onValueChange={value => this.setSwitch(value, 'studio')}
+                    value={filters.propertyType.includes('studio')}
+                  />
                   <ContentItemText>Studio</ContentItemText>
                 </View>
               </ContentItem>
@@ -174,43 +266,71 @@ export default class Filters extends Component {
               </ContentItem>
               <ContentItem>
                 <View style={styles.transactionText}>
-                  <Switch style={{ marginRight: 5 }} />
+                  <Switch
+                    style={{ marginRight: 5 }}
+                    onValueChange={value => this.setSwitch(value, 'land')}
+                    value={filters.propertyType.includes('land')}
+                  />
                   <ContentItemText>Terreno</ContentItemText>
                 </View>
               </ContentItem>
               <ContentItem>
                 <View style={styles.transactionText}>
-                  <Switch style={{ marginRight: 5 }} />
+                  <Switch
+                    style={{ marginRight: 5 }}
+                    onValueChange={value => this.setSwitch(value, 'warehouse')}
+                    value={filters.propertyType.includes('warehouse')}
+                  />
                   <ContentItemText>Armazém/Galpão</ContentItemText>
                 </View>
               </ContentItem>
               <ContentItem>
                 <View style={styles.transactionText}>
-                  <Switch style={{ marginRight: 5 }} />
+                  <Switch
+                    style={{ marginRight: 5 }}
+                    onValueChange={value => this.setSwitch(value, 'commercial_set')}
+                    value={filters.propertyType.includes('commercial_set')}
+                  />
                   <ContentItemText>Conjunto Comercial</ContentItemText>
                 </View>
               </ContentItem>
               <ContentItem>
                 <View style={styles.transactionText}>
-                  <Switch style={{ marginRight: 5 }} />
+                  <Switch
+                    style={{ marginRight: 5 }}
+                    onValueChange={value => this.setSwitch(value, 'farm')}
+                    value={filters.propertyType.includes('farm')}
+                  />
                   <ContentItemText>Fazenda/Sítio</ContentItemText>
                 </View>
               </ContentItem>
               <ContentItem>
                 <View style={styles.transactionText}>
-                  <Switch style={{ marginRight: 5 }} />
+                  <Switch
+                    style={{ marginRight: 5 }}
+                    onValueChange={value => this.setSwitch(value, 'store')}
+                    value={filters.propertyType.includes('store')}
+                  />
                   <ContentItemText>Loja</ContentItemText>
                 </View>
               </ContentItem>
               <ContentItem>
                 <View style={styles.transactionText}>
-                  <Switch style={{ marginRight: 5 }} />
+                  <Switch
+                    style={{ marginRight: 5 }}
+                    onValueChange={value => this.setSwitch(value, 'commercial_room')}
+                    value={filters.propertyType.includes('commercial_room')}
+                  />
                   <ContentItemText>Sala Comercial</ContentItemText>
                 </View>
               </ContentItem>
               <ContentItem>
                 <View style={styles.transactionText}>
-                  <Switch style={{ marginRight: 5 }} />
+                  <Switch
+                    style={{ marginRight: 5 }}
+                    onValueChange={value => this.setSwitch(value, 'commercial_building')}
+                    value={filters.propertyType.includes('commercial_building')}
+                  />
                   <ContentItemText>Prédio Comercial</ContentItemText>
                 </View>
               </ContentItem>
@@ -223,60 +343,108 @@ export default class Filters extends Component {
                 <ContentItemText style={{ fontWeight: '500' }}>Quartos</ContentItemText>
               </ContentItem>
               <ContentItem>
-                <CheckOption style={{ borderLeftWidth: 1 }}>
-                  <CheckOptionText>1</CheckOptionText>
+                <CheckOption
+                  style={{ borderLeftWidth: 1 }}
+                  selected={filters.bedroom.includes(1)}
+                  onPress={() => this.setBedroom(1)}
+                >
+                  <CheckOptionText selected={filters.bedroom.includes(1)}>1</CheckOptionText>
                 </CheckOption>
-                <CheckOption>
-                  <CheckOptionText>2</CheckOptionText>
+                <CheckOption
+                  selected={filters.bedroom.includes(2)}
+                  onPress={() => this.setBedroom(2)}
+                >
+                  <CheckOptionText selected={filters.bedroom.includes(2)}>2</CheckOptionText>
                 </CheckOption>
-                <CheckOption>
-                  <CheckOptionText>3</CheckOptionText>
+                <CheckOption
+                  selected={filters.bedroom.includes(3)}
+                  onPress={() => this.setBedroom(3)}
+                >
+                  <CheckOptionText selected={filters.bedroom.includes(3)}>3</CheckOptionText>
                 </CheckOption>
-                <CheckOption>
-                  <CheckOptionText>4</CheckOptionText>
+                <CheckOption
+                  selected={filters.bedroom.includes(4)}
+                  onPress={() => this.setBedroom(4)}
+                >
+                  <CheckOptionText selected={filters.bedroom.includes(4)}>4</CheckOptionText>
                 </CheckOption>
-                <CheckOption>
-                  <CheckOptionText>5+</CheckOptionText>
+                <CheckOption
+                  selected={filters.bedroom.includes(5)}
+                  onPress={() => this.setBedroom(5)}
+                >
+                  <CheckOptionText selected={filters.bedroom.includes(5)}>5+</CheckOptionText>
                 </CheckOption>
               </ContentItem>
               <ContentItem>
                 <ContentItemText style={{ fontWeight: '500' }}>Banheiros</ContentItemText>
               </ContentItem>
               <ContentItem>
-                <CheckOption style={{ borderLeftWidth: 1 }}>
-                  <CheckOptionText>1</CheckOptionText>
+                <CheckOption
+                  style={{ borderLeftWidth: 1 }}
+                  selected={filters.bathroom.includes(1)}
+                  onPress={() => this.setBathroom(1)}
+                >
+                  <CheckOptionText selected={filters.bathroom.includes(1)}>1</CheckOptionText>
                 </CheckOption>
-                <CheckOption>
-                  <CheckOptionText>2</CheckOptionText>
+                <CheckOption
+                  selected={filters.bathroom.includes(2)}
+                  onPress={() => this.setBathroom(2)}
+                >
+                  <CheckOptionText selected={filters.bathroom.includes(2)}>2</CheckOptionText>
                 </CheckOption>
-                <CheckOption>
-                  <CheckOptionText>3</CheckOptionText>
+                <CheckOption
+                  selected={filters.bathroom.includes(3)}
+                  onPress={() => this.setBathroom(3)}
+                >
+                  <CheckOptionText selected={filters.bathroom.includes(3)}>3</CheckOptionText>
                 </CheckOption>
-                <CheckOption>
-                  <CheckOptionText>4</CheckOptionText>
+                <CheckOption
+                  selected={filters.bathroom.includes(4)}
+                  onPress={() => this.setBathroom(4)}
+                >
+                  <CheckOptionText selected={filters.bathroom.includes(4)}>4</CheckOptionText>
                 </CheckOption>
-                <CheckOption>
-                  <CheckOptionText>5+</CheckOptionText>
+                <CheckOption
+                  selected={filters.bathroom.includes(5)}
+                  onPress={() => this.setBathroom(5)}
+                >
+                  <CheckOptionText selected={filters.bathroom.includes(5)}>5+</CheckOptionText>
                 </CheckOption>
               </ContentItem>
               <ContentItem>
                 <ContentItemText style={{ fontWeight: '500' }}>Vagas</ContentItemText>
               </ContentItem>
               <ContentItem>
-                <CheckOption style={{ borderLeftWidth: 1 }}>
-                  <CheckOptionText>1</CheckOptionText>
+                <CheckOption
+                  style={{ borderLeftWidth: 1 }}
+                  selected={filters.parkingSpace.includes(1)}
+                  onPress={() => this.setParkingSpace(1)}
+                >
+                  <CheckOptionText selected={filters.parkingSpace.includes(1)}>1</CheckOptionText>
                 </CheckOption>
-                <CheckOption>
-                  <CheckOptionText>2</CheckOptionText>
+                <CheckOption
+                  selected={filters.parkingSpace.includes(2)}
+                  onPress={() => this.setParkingSpace(2)}
+                >
+                  <CheckOptionText selected={filters.parkingSpace.includes(2)}>2</CheckOptionText>
                 </CheckOption>
-                <CheckOption>
-                  <CheckOptionText>3</CheckOptionText>
+                <CheckOption
+                  selected={filters.parkingSpace.includes(3)}
+                  onPress={() => this.setParkingSpace(3)}
+                >
+                  <CheckOptionText selected={filters.parkingSpace.includes(3)}>3</CheckOptionText>
                 </CheckOption>
-                <CheckOption>
-                  <CheckOptionText>4</CheckOptionText>
+                <CheckOption
+                  selected={filters.parkingSpace.includes(4)}
+                  onPress={() => this.setParkingSpace(4)}
+                >
+                  <CheckOptionText selected={filters.parkingSpace.includes(4)}>4</CheckOptionText>
                 </CheckOption>
-                <CheckOption>
-                  <CheckOptionText>5+</CheckOptionText>
+                <CheckOption
+                  selected={filters.parkingSpace.includes(5)}
+                  onPress={() => this.setParkingSpace(5)}
+                >
+                  <CheckOptionText selected={filters.parkingSpace.includes(5)}>5+</CheckOptionText>
                 </CheckOption>
               </ContentItem>
               <ContentItem>
@@ -292,6 +460,10 @@ export default class Filters extends Component {
                     marginRight: 5,
                   }}
                   placeholder="0 m²"
+                  onChangeText={(text) => {
+                    filters.area.min = text;
+                    this.setState({ filters });
+                  }}
                 />
                 <ContentItemText
                   style={{
@@ -312,6 +484,10 @@ export default class Filters extends Component {
                     marginLeft: 5,
                   }}
                   placeholder="0m²"
+                  onChangeText={(text) => {
+                    filters.area.max = text;
+                    this.setState({ filters });
+                  }}
                 />
               </ContentItem>
               <ContentItem>
@@ -327,6 +503,10 @@ export default class Filters extends Component {
                     marginRight: 5,
                   }}
                   placeholder="R$ 00,00"
+                  onChangeText={(text) => {
+                    filters.condo.min = text;
+                    this.setState({ filters });
+                  }}
                 />
                 <ContentItemText
                   style={{
@@ -347,6 +527,10 @@ export default class Filters extends Component {
                     marginLeft: 5,
                   }}
                   placeholder="R$ 00,00"
+                  onChangeText={(text) => {
+                    filters.condo.max = text;
+                    this.setState({ filters });
+                  }}
                 />
               </ContentItem>
             </FilterDropdownContent>
@@ -356,7 +540,7 @@ export default class Filters extends Component {
             <FilterCancelButton onPress={() => this.setState({ selectedFilter: null })}>
               <CancelButtonText>Cancelar</CancelButtonText>
             </FilterCancelButton>
-            <FilterConfirmButton>
+            <FilterConfirmButton onPress={() => {}}>
               <ConfirmButtonText>Confirmar</ConfirmButtonText>
             </FilterConfirmButton>
           </FilterDropdownControls>
