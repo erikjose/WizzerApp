@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StatusBar } from 'react-native';
+import { StatusBar, KeyboardAvoidingView } from 'react-native';
 
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -25,12 +25,14 @@ export default class Map extends Component {
 
   render() {
     return (
-      <Container>
-        <StatusBar hidden={false} />
-        <MapGoogle />
-        <Filters />
-        <Header />
-      </Container>
+      <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" enabled>
+        <Container>
+          <StatusBar hidden={false} />
+          <MapGoogle />
+          <Filters />
+          <Header />
+        </Container>
+      </KeyboardAvoidingView>
     );
   }
 }

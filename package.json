@@ -8,11 +8,11 @@
   },
   "dependencies": {
     "@ldn0x7dc/react-native-view-pager": "0.0.9",
+    "@react-native-community/async-storage": "^1.4.2",
     "axios": "^0.18.0",
     "prop-types": "^15.7.2",
     "react": "16.8.3",
     "react-native": "0.59.8",
-    "react-native-async-storage": "^0.0.1",
     "react-native-gesture-handler": "^1.2.1",
     "react-native-image-gallery": "^2.1.5",
     "react-native-maps": "^0.24.2",

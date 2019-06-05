@@ -8,7 +8,12 @@ export default function Query(state = INITIAL_STATE, action) {
     case 'SET_QUERY':
       return {
         ...state,
-        query: action.uri,
+        query: action.query,
+      };
+    case 'SET_GEOCODE':
+      return {
+        ...state,
+        geocode: action.geocode,
       };
     default:
       return state;

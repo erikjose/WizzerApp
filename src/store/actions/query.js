@@ -3,6 +3,11 @@ export const setQuery = value => ({
   query: value,
 });
 
+export const setGeocode = value => ({
+  type: 'SET_GEOCODE',
+  geocode: value,
+});
+
 export const loginGit = () => ({
   type: 'LOGIN_QUERY',
   username: 'erikjose',

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MapView from 'react-native-maps';
+import MapView, { Marker } from 'react-native-maps';
 import { withNavigation } from 'react-navigation';
 
 import List from '~/components/List';
@@ -22,7 +22,9 @@ class MapGoogle extends Component {
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
           }}
-        />
+        >
+          <Marker coordinate={{ latitude: 37.78825, longitude: -122.4324 }} />
+        </MapView>
         <List navigation={navigation} />
       </Container>
     );

@@ -4,10 +4,25 @@ import { colors } from '~/styles';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as QueryActions from '~/store/actions/query';
+import api from '~/services/api';
 
 import {
   Container, SearchBox, SearchInput, SearchButton,
 } from './styles';
+
+const getGeocode = async (query, setGeocode) => {
+  try {
+    const response = await api.get('/geocode', {
+      params: { query },
+    });
+
+    const { geocode } = response.data;
+
+    setGeocode(geocode);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 const Header = ({ uri, setQuery }) => (
   <Container>
@@ -18,7 +33,7 @@ const Header = ({ uri, setQuery }) => (
         value={uri.query}
         onChangeText={text => setQuery(text)}
       />
-      <SearchButton>
+      <SearchButton onPress={() => getGeocode(uri.query)}>
         <Icon
           name="map-marker-outline"
           color={colors.regular}

@@ -150,9 +150,19 @@ export default class Filters extends Component {
                   }}
                   placeholder="R$ 00,00"
                   onChangeText={(text) => {
-                    filters.price.min = text;
+                    if (text.includes(',00')) {
+                      // Adds a number
+                      filters.price.min = text.replace(',00', '').replace(/\D/gi, '');
+                    } else {
+                      // Removes a number
+                      filters.price.min = text.replace(/\D/gi, '').slice(0, -2);
+                    }
                     this.setState({ filters });
                   }}
+                  value={(new Intl.NumberFormat('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL',
+                  })).format(filters.price.min)}
                 />
                 <ContentItemText
                   style={{
@@ -174,9 +184,19 @@ export default class Filters extends Component {
                   }}
                   placeholder="R$ 00,00"
                   onChangeText={(text) => {
-                    filters.price.max = text;
+                    if (text.includes(',00')) {
+                      // Adds a number
+                      filters.price.max = text.replace(',00', '').replace(/\D/gi, '');
+                    } else {
+                      // Removes a number
+                      filters.price.max = text.replace(/\D/gi, '').slice(0, -2);
+                    }
                     this.setState({ filters });
                   }}
+                  value={(new Intl.NumberFormat('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL',
+                  })).format(filters.price.max)}
                 />
               </ContentItem>
             </FilterDropdownContent>
@@ -504,9 +524,19 @@ export default class Filters extends Component {
                   }}
                   placeholder="R$ 00,00"
                   onChangeText={(text) => {
-                    filters.condo.min = text;
+                    if (text.includes(',00')) {
+                      // Adds a number
+                      filters.condo.min = text.replace(',00', '').replace(/\D/gi, '');
+                    } else {
+                      // Removes a number
+                      filters.condo.min = text.replace(/\D/gi, '').slice(0, -2);
+                    }
                     this.setState({ filters });
                   }}
+                  value={(new Intl.NumberFormat('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL',
+                  })).format(filters.condo.min)}
                 />
                 <ContentItemText
                   style={{
@@ -528,9 +558,20 @@ export default class Filters extends Component {
                   }}
                   placeholder="R$ 00,00"
                   onChangeText={(text) => {
-                    filters.condo.max = text;
+                    if (text.includes(',00')) {
+                      // Adds a number
+                      filters.condo.max = text.replace(',00', '').replace(/\D/gi, '');
+                    } else {
+                      // Removes a number
+                      filters.condo.max = text.replace(/\D/gi, '').slice(0, -2);
+                    }
                     this.setState({ filters });
                   }}
+
+                  value={(new Intl.NumberFormat('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL',
+                  })).format(filters.condo.max)}
                 />
               </ContentItem>
             </FilterDropdownContent>

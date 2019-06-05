@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { Text, Linking } from 'react-native';
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -29,7 +29,7 @@ const More = () => (
       <SectionTitle>
         <Text style={styles.text}>Sobre o aplicativo</Text>
       </SectionTitle>
-      <SectionItem>
+      <SectionItem onPress={() => Linking.openURL('market://details?id=com.whatsapp')}>
         <Text style={styles.text}>Avalie este aplicativo</Text>
       </SectionItem>
       <SectionTitle>
