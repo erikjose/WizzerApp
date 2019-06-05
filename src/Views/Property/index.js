@@ -50,7 +50,7 @@ class Property extends Component {
           </ControllButton>
         </HeaderNav>
         <View style={{ height: '70%', zIndex: 1 }}>
-          <Gallery property={property.image} />
+          <Gallery property={property} navigation={navigation} />
         </View>
         <Animated.View
           style={[

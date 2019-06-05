@@ -7,3 +7,7 @@ export const styles = StyleSheet.create({});
 export const Container = styled.ScrollView`
   background-color: ${colors.lighter};
 `;
+
+export const ButtonGallery = styled.TouchableOpacity.attrs({
+  activeOpacity: 0.9,
+})``;

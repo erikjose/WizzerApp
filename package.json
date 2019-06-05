@@ -7,14 +7,17 @@
     "test": "jest"
   },
   "dependencies": {
+    "@ldn0x7dc/react-native-view-pager": "0.0.9",
     "axios": "^0.18.0",
     "prop-types": "^15.7.2",
     "react": "16.8.3",
     "react-native": "0.59.8",
     "react-native-async-storage": "^0.0.1",
     "react-native-gesture-handler": "^1.2.1",
+    "react-native-image-gallery": "^2.1.5",
     "react-native-maps": "^0.24.2",
     "react-native-status-bar-height": "^2.3.1",
+    "react-native-transformable-image": "0.0.18",
     "react-native-vector-icons": "^6.4.2",
     "react-navigation": "^3.11.0",
     "react-redux": "^7.0.3",
