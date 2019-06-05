@@ -156,9 +156,10 @@ export const CheckOption = styled.TouchableOpacity`
   align-items: center;
   height: 30px;
   flex: 1;
+  background: ${props => (props.selected ? colors.primary : 'transparent')};
 `;
 
 export const CheckOptionText = styled.Text`
-  color: ${colors.primary};
+  color: ${props => (props.selected ? colors.white : colors.primary)};
   font-size: 13px;
 `;
