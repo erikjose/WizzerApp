@@ -11,6 +11,7 @@ import Highlights from '~/Views/Highlights';
 import History from '~/Views/History';
 import More from '~/Views/More';
 import Property from '~/Views/Property';
+import GalleryMain from '~/Views/Gallery';
 
 const Route = createAppContainer(
   createStackNavigator(
@@ -37,6 +38,7 @@ const Route = createAppContainer(
         },
       ),
       Property,
+      GalleryMain,
     },
     {
       headerMode: 'none',
