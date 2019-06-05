@@ -19,7 +19,6 @@ import {
 } from './styles';
 
 const handleNavigation = (navigation, property) => {
-  console.tron.log(property);
   navigation.navigate('Property', { property });
 };
 

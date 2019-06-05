@@ -7,7 +7,10 @@ import { Container, ButtonGallery } from './styles';
 const Gallery = ({ property, navigation }) => (
   <Container>
     {property.image.map((image, index) => (
-      <ButtonGallery key={index} onPress={() => navigation.navigate('GalleryMain', { property })}>
+      <ButtonGallery
+        key={index}
+        onPress={() => navigation.navigate('GalleryMain', { property, index })}
+      >
         <Image
           source={image}
           resizeMethod="resize"
