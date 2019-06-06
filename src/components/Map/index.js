@@ -6,6 +6,7 @@ import * as TheActions from '~/store/actions';
 import { withNavigation } from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { colors, metrics } from '~/styles';
+import mapStyle from './mapstyle';
 
 import List from '~/components/List';
 
@@ -18,6 +19,7 @@ const MapGoogle = ({
     <MapView
       style={styles.mapView}
       region={uri.region}
+      customMapStyle={mapStyle}
       onRegionChangeComplete={(region) => {
         setBounds(region);
         getProperties(region, filters);
