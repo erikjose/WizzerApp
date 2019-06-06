@@ -36,9 +36,9 @@ class Details extends Component {
   render() {
     const { property } = this.props;
     return (
-      <View style={[styles.container, { flex: 1 }]}>
+      <View style={styles.container}>
         <StatusBar hidden />
-        <ContainerScroll scrollEnabled>
+        <ContainerScroll>
           <DetailsContainer>
             <DetailsPrice>{property.price}</DetailsPrice>
             <DetailsTransaction transaction={property.transaction}>
