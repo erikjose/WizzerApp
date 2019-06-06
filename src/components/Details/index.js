@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { StatusBar, Image, View } from 'react-native';
+import {
+  StatusBar, Image, View, Text,
+} from 'react-native';
 
 import {
   styles,
@@ -36,7 +38,7 @@ class Details extends Component {
   render() {
     const { property } = this.props;
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, { flex: 1 }]}>
         <StatusBar hidden />
         <ContainerScroll>
           <DetailsContainer>
@@ -97,11 +99,97 @@ class Details extends Component {
           <ContentDescription>
             <DescriptionTitle>Descrição do imóvel</DescriptionTitle>
             <DescriptionText>{property.property.description}</DescriptionText>
+
+            <DescriptionTitle style={{ marginTop: 15 }}>Especificações</DescriptionTitle>
+            <View
+              style={{
+                flex: 1,
+                flexDirection: 'row',
+                marginTop: 10,
+                alignItems: 'center',
+              }}
+            >
+              <View
+                style={{
+                  height: 15,
+                  width: 15,
+                  backgroundColor: '#DDD',
+                  marginRight: 10,
+                }}
+              />
+              <View style={{ flex: 1, flexDirection: 'row' }}>
+                <Text style={styles.espTitle}>Condomínio:</Text>
+                <Text style={styles.espText}>{property.condo}</Text>
+              </View>
+            </View>
+            <View
+              style={{
+                flex: 1,
+                flexDirection: 'row',
+                marginTop: 10,
+                alignItems: 'center',
+              }}
+            >
+              <View
+                style={{
+                  height: 15,
+                  width: 15,
+                  backgroundColor: '#DDD',
+                  marginRight: 10,
+                }}
+              />
+              <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                <Text style={styles.espTitle}>Complemento:</Text>
+                <Text style={styles.espText}>das</Text>
+              </View>
+            </View>
+            <View
+              style={{
+                flex: 1,
+                flexDirection: 'row',
+                marginTop: 10,
+                alignItems: 'center',
+              }}
+            >
+              <View
+                style={{
+                  height: 15,
+                  width: 15,
+                  backgroundColor: '#DDD',
+                  marginRight: 10,
+                }}
+              />
+              <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                <Text style={styles.espTitle}>CEP:</Text>
+                <Text style={styles.espText}>das</Text>
+              </View>
+            </View>
+            <View
+              style={{
+                flex: 1,
+                flexDirection: 'row',
+                marginTop: 10,
+                alignItems: 'center',
+              }}
+            >
+              <View
+                style={{
+                  height: 15,
+                  width: 15,
+                  backgroundColor: '#DDD',
+                  marginRight: 10,
+                }}
+              />
+              <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                <Text style={styles.espTitle}>Dias no Wizzer:</Text>
+                <Text style={styles.espText}>das</Text>
+              </View>
+            </View>
           </ContentDescription>
-          <ContentButton>
-            <ButtonProperty>Falar com anunciante</ButtonProperty>
-          </ContentButton>
         </ContainerScroll>
+        <ContentButton>
+          <ButtonProperty>Falar com anunciante</ButtonProperty>
+        </ContentButton>
       </View>
     );
   }
