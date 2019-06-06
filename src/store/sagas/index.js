@@ -7,10 +7,10 @@ import * as PropertyActions from '~/store/actions/property';
 function* getProperties(action) {
   try {
     const response = yield call(api.post, '/search', {
-      maxLat: 90,
-      minLat: -90,
-      maxLng: 180,
-      minLng: -180,
+      maxLat: action.region.latitude + action.region.latitudeDelta / 2,
+      minLat: action.region.latitude - action.region.latitudeDelta / 2,
+      maxLng: action.region.longitude + action.region.longitudeDelta / 2,
+      minLng: action.region.longitude - action.region.longitudeDelta / 2,
       filters: {
         transaction: action.filters.transaction,
         propertyType: action.filters.propertyType,
