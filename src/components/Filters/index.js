@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Switch, View, TextInput } from 'react-native';
 import Intl from 'intl';
 import locale from 'intl/locale-data/jsonp/pt-BR';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as TheActions from '~/store/actions';
 
 import {
   Container,
@@ -26,7 +29,7 @@ import {
   CheckOptionText,
 } from './styles';
 
-export default class Filters extends Component {
+class Filters extends Component {
   state = {
     selectedFilter: null,
     filters: {
@@ -94,6 +97,14 @@ export default class Filters extends Component {
     }
 
     this.setState({ filters });
+  }
+
+  getProperties() {
+    this.props.setFilters(this.state.filters);
+
+    this.props.getProperties(this.props.uri.region, this.props.filters);
+
+    this.setState({ selectedFilter: null });
   }
 
   render() {
@@ -583,7 +594,7 @@ export default class Filters extends Component {
             <FilterCancelButton onPress={() => this.setState({ selectedFilter: null })}>
               <CancelButtonText>Cancelar</CancelButtonText>
             </FilterCancelButton>
-            <FilterConfirmButton onPress={() => {}}>
+            <FilterConfirmButton onPress={() => this.getProperties()}>
               <ConfirmButtonText>Confirmar</ConfirmButtonText>
             </FilterConfirmButton>
           </FilterDropdownControls>
@@ -640,3 +651,15 @@ export default class Filters extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  filters: state.filters.filters,
+  uri: state.query,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators(TheActions, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Filters);

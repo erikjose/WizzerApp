@@ -14,6 +14,9 @@ const INITIAL_STATE = {
 
 export default function Filters(state = INITIAL_STATE, action) {
   switch (action.type) {
+    case 'SET_FILTERS':
+      return { filters: action.filters };
+
     default:
       return state;
   }
