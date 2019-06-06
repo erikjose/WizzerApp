@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { StatusBar, Image, View } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {
   styles,
@@ -16,6 +15,9 @@ import {
   SpecificationText,
   ContentButton,
   ContainerScroll,
+  ContentDescription,
+  DescriptionTitle,
+  DescriptionText,
 } from './styles';
 
 import ButtonProperty from '~/components/ButtonProperty';
@@ -34,13 +36,13 @@ class Details extends Component {
   render() {
     const { property } = this.props;
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, { flex: 1 }]}>
         <StatusBar hidden />
-        <ContainerScroll>
+        <ContainerScroll scrollEnabled>
           <DetailsContainer>
             <DetailsPrice>{property.price}</DetailsPrice>
-            <DetailsTransaction transaction={property.transation}>
-              <DetailsTransactionText>{property.transation}</DetailsTransactionText>
+            <DetailsTransaction transaction={property.transaction}>
+              <DetailsTransactionText>{property.transaction}</DetailsTransactionText>
             </DetailsTransaction>
           </DetailsContainer>
           <Specification>
@@ -51,7 +53,7 @@ class Details extends Component {
                 resizeMode="contain"
                 style={styles.image}
               />
-              <SpecificationText>{property.specification.bedroom}</SpecificationText>
+              <SpecificationText>{property.property.rooms}</SpecificationText>
             </SpecificationItem>
             <SpecificationItem>
               <Image
@@ -60,7 +62,7 @@ class Details extends Component {
                 resizeMode="contain"
                 style={styles.image}
               />
-              <SpecificationText>{property.specification.bathroom}</SpecificationText>
+              <SpecificationText>{property.property.bathrooms}</SpecificationText>
             </SpecificationItem>
             <SpecificationItem>
               <Image
@@ -69,7 +71,7 @@ class Details extends Component {
                 resizeMode="contain"
                 style={styles.image}
               />
-              <SpecificationText>{property.specification.parkingSpace}</SpecificationText>
+              <SpecificationText>{property.property.parking_spaces}</SpecificationText>
             </SpecificationItem>
             <SpecificationItem>
               <Image
@@ -79,15 +81,23 @@ class Details extends Component {
                 style={styles.image}
               />
               <SpecificationText>
-                {property.specification.area}
+                {property.property.area}
                 m&sup2;
               </SpecificationText>
             </SpecificationItem>
           </Specification>
           <Address>
-            <AddressText>{`${property.address}, ${property.number}`}</AddressText>
-            <CityText>{`${property.neighborhood} - ${property.city}, ${property.state}`}</CityText>
+            <AddressText>{`${property.property.street}, ${property.property.number}`}</AddressText>
+            <CityText>
+              {`${property.property.neighborhood} - ${property.property.city}, ${
+                property.property.state
+              }`}
+            </CityText>
           </Address>
+          <ContentDescription>
+            <DescriptionTitle>Descrição do imóvel</DescriptionTitle>
+            <DescriptionText>{property.property.description}</DescriptionText>
+          </ContentDescription>
           <ContentButton>
             <ButtonProperty>Falar com anunciante</ButtonProperty>
           </ContentButton>

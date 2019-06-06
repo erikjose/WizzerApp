@@ -6,13 +6,13 @@ import { Container, ButtonGallery } from './styles';
 
 const Gallery = ({ property, navigation }) => (
   <Container>
-    {property.image.map((image, index) => (
+    {property.property.picture.map((image, index) => (
       <ButtonGallery
-        key={index}
+        key={property.advert_id}
         onPress={() => navigation.navigate('GalleryMain', { property, index })}
       >
         <Image
-          source={image}
+          source={{ uri: `https://api.wizzer.com.br/storage/${image}` }}
           resizeMethod="resize"
           resizeMode="cover"
           style={{ width: '100%', height: 200, marginBottom: 5 }}

@@ -30,8 +30,11 @@ class GalleryMain extends Component {
     const { navigation } = this.props;
     const property = navigation.getParam('property');
     let images = [];
-    property.image.forEach((element) => {
-      const objImg = { source: element, dimensions: { height: 150 } };
+    property.property.picture.forEach((element) => {
+      const objImg = {
+        source: { uri: `https://api.wizzer.com.br/storage/${element}` },
+        dimensions: { height: 150 },
+      };
       images = [...images, objImg];
     });
 
@@ -52,7 +55,7 @@ class GalleryMain extends Component {
           <ControllButton onPress={() => navigation.pop()}>
             <Icon name="arrow-left" size={25} style={styles.arrowReturn} />
           </ControllButton>
-          <DetailsText>{`${currentImage} de ${property.image.length}`}</DetailsText>
+          <DetailsText>{`${currentImage} de ${property.property.picture.length}`}</DetailsText>
           <ControllButton onPress={() => Share.share(shareOptions)}>
             <Icon name="share-outline" size={25} style={styles.share} />
           </ControllButton>

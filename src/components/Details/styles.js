@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
 });
 
 export const ContainerScroll = styled.ScrollView`
-  width: 100%;
+  flex: 1;
 `;
 
 export const DetailsContainer = styled.View`
@@ -35,13 +35,14 @@ export const DetailsPrice = styled.Text`
 
 export const DetailsTransaction = styled.View`
   padding: ${metrics.basePadding - 10}px ${metrics.basePadding}px;
-  background-color: ${props => (props.transaction === 'Comprar' ? `${colors.primary}` : `${colors.secundary}`)};
+  background-color: ${props => (props.transaction === 'vender' ? `${colors.primary}` : `${colors.secundary}`)};
 `;
 
 export const DetailsTransactionText = styled.Text`
   font-size: 14px;
   color: ${colors.white};
   font-weight: 500;
+  text-transform: capitalize;
 `;
 
 export const Address = styled.View``;
@@ -80,4 +81,20 @@ export const ContentButton = styled.View`
   align-items: center;
   justify-content: center;
   flex-direction: row;
+`;
+
+export const ContentDescription = styled.View``;
+
+export const DescriptionTitle = styled.Text`
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 2px;
+  color: ${colors.darker};
+`;
+
+export const DescriptionText = styled.Text`
+  font-size: 18px;
+  font-weight: 300;
+  margin-bottom: 2px;
+  color: ${colors.darker};
 `;
