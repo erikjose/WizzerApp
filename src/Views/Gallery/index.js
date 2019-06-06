@@ -27,7 +27,8 @@ class GalleryMain extends Component {
   }
 
   handleItem = () => {
-    const property = this.props.navigation.getParam('property');
+    const { navigation } = this.props;
+    const property = navigation.getParam('property');
     let images = [];
     property.image.forEach((element) => {
       const objImg = { source: element, dimensions: { height: 150 } };
@@ -58,7 +59,6 @@ class GalleryMain extends Component {
         </GalleryNav>
         <Gallery
           style={{ flex: 1, backgroundColor: 'black', width: '100%' }}
-          initialPage={initialImage}
           images={images}
           key={item => item.property.id}
           onPageScroll={(event) => {

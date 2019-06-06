@@ -2,6 +2,7 @@ import {
   all, takeLatest, call, put,
 } from 'redux-saga/effects';
 import api from '~/services/api';
+import * as PropertyActions from '~/store/actions/property';
 
 function* getProperties(action) {
   try {
@@ -33,16 +34,10 @@ function* getProperties(action) {
     });
 
     console.log(response.data.adverts);
-    yield put({
-      type: 'SET_PROPERTIES',
-      property: response.data.adverts,
-    });
+    yield put(PropertyActions.setProperties(response));
   } catch (error) {
     console.log(error);
-    yield put({
-      type: 'SET_PROPERTIES',
-      property: [],
-    });
+    yield put(PropertyActions.setProperties(error));
   }
 }
 

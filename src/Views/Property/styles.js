@@ -6,9 +6,15 @@ import { metrics, colors } from '~/styles';
 export const styles = StyleSheet.create({
   arrowReturn: {
     color: colors.white,
+    textShadowColor: colors.darker,
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 2,
   },
   share: {
     color: colors.white,
+    textShadowColor: colors.darker,
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 2,
   },
   details: {
     height: '90%',
