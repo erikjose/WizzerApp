@@ -26,15 +26,15 @@ const ListProperty = ({ property, navigation }) => (
   <Container
     data={property}
     renderItem={({ item }) => (
-      <ListItem onPress={() => handleNavigation(navigation, item)} transaction={item.transation}>
+      <ListItem onPress={() => handleNavigation(navigation, item)} transaction={item.transaction}>
         <HeaderItem>
           <ItemImage
             source={require('~/assets/placeholder.jpg')}
             resizeMethod="resize"
             resizeMode="cover"
           />
-          <TransactionBox transaction={item.transation}>
-            <TransactionText>{item.transation}</TransactionText>
+          <TransactionBox transaction={item.transaction}>
+            <TransactionText>{item.transaction}</TransactionText>
           </TransactionBox>
         </HeaderItem>
         <InfoBox>
@@ -43,13 +43,15 @@ const ListProperty = ({ property, navigation }) => (
             <PropertyInfo />
           </GeneralInfo>
           <AddressInfo>
-            <AddressText>{`${item.address}, ${item.number}`}</AddressText>
-            <CityText>{`${item.neighborhood} - ${item.city}, ${item.state}`}</CityText>
+            <AddressText>{`${item.property.street}, ${item.property.number}`}</AddressText>
+            <CityText>
+              {`${item.property.neighborhood} - ${item.property.city}, ${item.property.state}`}
+            </CityText>
           </AddressInfo>
         </InfoBox>
       </ListItem>
     )}
-    keyExtractor={item => item.id}
+    keyExtractor={item => item.advert_id.toString()}
   />
 );
 

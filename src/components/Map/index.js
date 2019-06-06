@@ -1,34 +1,34 @@
 import React, { Component } from 'react';
 import MapView, { Marker } from 'react-native-maps';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as QueryActions from '~/store/actions/query';
 import { withNavigation } from 'react-navigation';
 
 import List from '~/components/List';
 
 import { Container, styles } from './styles';
 
-class MapGoogle extends Component {
-  state = {};
+const MapGoogle = ({ uri, setBounds, navigation }) => (
+  <Container>
+    <MapView
+      style={styles.mapView}
+      region={uri.region}
+      onRegionChangeComplete={region => setBounds(region)}
+    >
+      <Marker coordinate={{ latitude: 37.78825, longitude: -122.4324 }} />
+    </MapView>
+    <List navigation={navigation} />
+  </Container>
+);
 
-  render() {
-    const { navigation } = this.props;
+const mapStateToProps = state => ({
+  uri: state.query,
+});
 
-    return (
-      <Container>
-        <MapView
-          style={styles.mapView}
-          initialRegion={{
-            latitude: 37.78825,
-            longitude: -122.4324,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
-          }}
-        >
-          <Marker coordinate={{ latitude: 37.78825, longitude: -122.4324 }} />
-        </MapView>
-        <List navigation={navigation} />
-      </Container>
-    );
-  }
-}
+const mapDispatchToProps = dispatch => bindActionCreators(QueryActions, dispatch);
 
-export default withNavigation(MapGoogle);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(withNavigation(MapGoogle));

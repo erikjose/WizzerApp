@@ -8,7 +8,7 @@ export const setGeocode = value => ({
   geocode: value,
 });
 
-export const loginGit = () => ({
-  type: 'LOGIN_QUERY',
-  username: 'erikjose',
+export const setBounds = value => ({
+  type: 'SET_BOUNDS',
+  bounds: value,
 });

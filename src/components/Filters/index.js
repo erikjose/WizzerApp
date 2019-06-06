@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, View, TextInput } from 'react-native';
+import Intl from 'intl';
+import locale from 'intl/locale-data/jsonp/pt-BR';
 
 import {
   Container,
@@ -159,7 +161,7 @@ export default class Filters extends Component {
                     }
                     this.setState({ filters });
                   }}
-                  value={(new Intl.NumberFormat('pt-BR', {
+                  value={(new Intl.NumberFormat(locale, {
                     style: 'currency',
                     currency: 'BRL',
                   })).format(filters.price.min)}
@@ -193,7 +195,7 @@ export default class Filters extends Component {
                     }
                     this.setState({ filters });
                   }}
-                  value={(new Intl.NumberFormat('pt-BR', {
+                  value={(new Intl.NumberFormat(locale, {
                     style: 'currency',
                     currency: 'BRL',
                   })).format(filters.price.max)}
@@ -533,7 +535,7 @@ export default class Filters extends Component {
                     }
                     this.setState({ filters });
                   }}
-                  value={(new Intl.NumberFormat('pt-BR', {
+                  value={(new Intl.NumberFormat(locale, {
                     style: 'currency',
                     currency: 'BRL',
                   })).format(filters.condo.min)}
@@ -568,7 +570,7 @@ export default class Filters extends Component {
                     this.setState({ filters });
                   }}
 
-                  value={(new Intl.NumberFormat('pt-BR', {
+                  value={(new Intl.NumberFormat(locale, {
                     style: 'currency',
                     currency: 'BRL',
                   })).format(filters.condo.max)}

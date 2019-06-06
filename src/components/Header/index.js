@@ -3,14 +3,14 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { colors } from '~/styles';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as QueryActions from '~/store/actions/query';
+import * as TheActions from '~/store/actions';
 import api from '~/services/api';
 
 import {
   Container, SearchBox, SearchInput, SearchButton,
 } from './styles';
 
-const getGeocode = async (query, setGeocode) => {
+const getGeocode = async (query, setGeocode, region, filters, getProperties) => {
   try {
     const response = await api.get('/geocode', {
       params: { query },
@@ -19,12 +19,16 @@ const getGeocode = async (query, setGeocode) => {
     const { geocode } = response.data;
 
     setGeocode(geocode);
+
+    getProperties(region, filters);
   } catch (error) {
     console.log(error);
   }
 };
 
-const Header = ({ uri, setQuery }) => (
+const Header = ({
+  uri, filters, setQuery, setGeocode, getProperties,
+}) => (
   <Container>
     <SearchBox>
       <Icon name="magnify" color={colors.regular} size={25} />
@@ -33,7 +37,10 @@ const Header = ({ uri, setQuery }) => (
         value={uri.query}
         onChangeText={text => setQuery(text)}
       />
-      <SearchButton onPress={() => getGeocode(uri.query)}>
+      <SearchButton
+        onPress={() => getGeocode(uri.query, setGeocode, uri.region, filters.filters, getProperties)
+        }
+      >
         <Icon
           name="map-marker-outline"
           color={colors.regular}
@@ -47,9 +54,10 @@ const Header = ({ uri, setQuery }) => (
 
 const mapStateToProps = state => ({
   uri: state.query,
+  filters: state.filters,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators(QueryActions, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators(TheActions, dispatch);
 
 export default connect(
   mapStateToProps,

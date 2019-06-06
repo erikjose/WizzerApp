@@ -10,6 +10,7 @@
     "@ldn0x7dc/react-native-view-pager": "0.0.9",
     "@react-native-community/async-storage": "^1.4.2",
     "axios": "^0.18.0",
+    "intl": "^1.2.5",
     "prop-types": "^15.7.2",
     "react": "16.8.3",
     "react-native": "0.59.8",
