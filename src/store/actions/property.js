@@ -6,5 +6,5 @@ export const getProperties = (region, filters) => ({
 
 export const setProperties = property => ({
   type: 'SET_PROPERTIES',
-  property: property.data.adverts,
+  property,
 });

@@ -33,11 +33,9 @@ function* getProperties(action) {
       },
     });
 
-    console.log(response.data.adverts);
-    yield put(PropertyActions.setProperties(response));
+    yield put(PropertyActions.setProperties(response.data.adverts));
   } catch (error) {
-    console.log(error);
-    yield put(PropertyActions.setProperties(error));
+    yield put(PropertyActions.setProperties([]));
   }
 }
 

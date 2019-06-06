@@ -55,7 +55,10 @@ class Property extends Component {
         <Animated.View
           style={[
             styles.details,
-            { top: positionY.interpolate({ inputRange: [20, 70], outputRange: ['20%', '70%'] }) },
+            {
+              top: positionY.interpolate({ inputRange: [10, 70], outputRange: ['10%', '70%'] }),
+              height: positionY.interpolate({ inputRange: [10, 70], outputRange: ['90%', '30%'] }),
+            },
           ]}
         >
           <ArrowTop onPress={() => this.hendlerAnimate()}>

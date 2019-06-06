@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
     textShadowRadius: 2,
   },
   details: {
-    height: '90%',
+    height: '30%',
     zIndex: 2,
     position: 'absolute',
     top: '70%',
