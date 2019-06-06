@@ -38,7 +38,7 @@ class Details extends Component {
     return (
       <View style={[styles.container, { flex: 1 }]}>
         <StatusBar hidden />
-        <ContainerScroll scrollEnabled>
+        <ContainerScroll>
           <DetailsContainer>
             <DetailsPrice>{property.price}</DetailsPrice>
             <DetailsTransaction transaction={property.transaction}>

@@ -2,26 +2,39 @@ import React, { Component } from 'react';
 import MapView, { Marker } from 'react-native-maps';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as QueryActions from '~/store/actions/query';
+import * as TheActions from '~/store/actions';
 import { withNavigation } from 'react-navigation';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { colors, metrics } from '~/styles';
 
 import List from '~/components/List';
 
 import { Container, styles } from './styles';
 
 const MapGoogle = ({
-  uri, setBounds, navigation, property,
+  uri, setBounds, navigation, property, filters, getProperties,
 }) => (
   <Container>
     <MapView
       style={styles.mapView}
       region={uri.region}
-      onRegionChangeComplete={region => setBounds(region)}
+      onRegionChangeComplete={(region) => {
+        setBounds(region);
+        getProperties(region, filters);
+      }}
     >
-      {console.tron.log(property)}
-      {/* {property.forEach((element) => {
-        <Marker coordinate={{ latitude: element.property.lat, longitude: element.property.lat }} />;
-      })} */}
+      {property.map(item => (
+        <Marker
+          coordinate={{ latitude: item.property.lat, longitude: item.property.lng }}
+          key={item.advert_id.toString()}
+        >
+          <Icon
+            name="circle-slice-8"
+            size={Math.log2(360 * (metrics.screenWidth / 256 / uri.region.longitudeDelta)) + 1}
+            color={item.transaction == 'alugar' ? colors.secundary : colors.primary}
+          />
+        </Marker>
+      ))}
       {/* <Marker coordinate={{ latitude: 37.78825, longitude: -122.4324 }} /> */}
     </MapView>
     <List navigation={navigation} />
@@ -30,10 +43,11 @@ const MapGoogle = ({
 
 const mapStateToProps = state => ({
   uri: state.query,
-  property: state.properties,
+  property: state.properties.property,
+  filters: state.filters.filters,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators(QueryActions, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators(TheActions, dispatch);
 
 export default connect(
   mapStateToProps,
