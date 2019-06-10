@@ -14,6 +14,14 @@ export const styles = StyleSheet.create({
     paddingLeft: 10,
     backgroundColor: colors.white,
   },
+  espTitle: {
+    fontSize: 18,
+    fontWeight: '500',
+    color: colors.darker,
+  },
+  espText: {
+    fontSize: 18, fontWeight: '300', color: colors.darker, marginLeft: 5,
+  },
 });
 
 export const ContainerScroll = styled.ScrollView`
@@ -45,7 +53,9 @@ export const DetailsTransactionText = styled.Text`
   text-transform: capitalize;
 `;
 
-export const Address = styled.View``;
+export const Address = styled.View`
+  margin-top: 10px;
+`;
 
 export const AddressText = styled.Text`
   font-size: 22px;
@@ -62,6 +72,7 @@ export const CityText = styled.Text`
 
 export const Specification = styled.View`
   flex-direction: row;
+  margin-top: 5px;
 `;
 
 export const SpecificationItem = styled.View`
@@ -83,10 +94,12 @@ export const ContentButton = styled.View`
   flex-direction: row;
 `;
 
-export const ContentDescription = styled.View``;
+export const ContentDescription = styled.View`
+  margin-top: 15px;
+`;
 
 export const DescriptionTitle = styled.Text`
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 500;
   margin-bottom: 2px;
   color: ${colors.darker};
