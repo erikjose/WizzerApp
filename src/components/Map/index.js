@@ -37,9 +37,17 @@ const MapGoogle = ({
           />
         </Marker>
       ))}
-      {/* <Marker coordinate={{ latitude: 37.78825, longitude: -122.4324 }} /> */}
+      {uri.user.latitude != null && uri.user.longitude != null ? (
+        <Marker coordinate={uri.user} key="user">
+          <Icon
+            name="crosshairs-gps"
+            size={Math.log2(360 * (metrics.screenWidth / 256 / uri.region.longitudeDelta)) + 10}
+            color="#f34530"
+          />
+        </Marker>
+      ) : null}
     </MapView>
-    <List navigation={navigation} />
+    {/* <List navigation={navigation} /> */}
   </Container>
 );
 

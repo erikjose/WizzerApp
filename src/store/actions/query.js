@@ -12,3 +12,8 @@ export const setBounds = value => ({
   type: 'SET_BOUNDS',
   bounds: value,
 });
+
+export const setUserLocation = (latitude, longitude) => ({
+  type: 'SET_USER_LOCATION',
+  location: { latitude, longitude },
+});

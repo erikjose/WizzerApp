@@ -2,10 +2,14 @@ const INITIAL_STATE = {
   query: null,
   geocode: null,
   region: {
-    latitude: 37.78825,
-    longitude: -122.4324,
-    latitudeDelta: 0.0922,
-    longitudeDelta: 0.0421,
+    latitude: -14.902322,
+    longitude: -54.18457,
+    latitudeDelta: 41.348938,
+    longitudeDelta: 41.132812,
+  },
+  user: {
+    latitude: null,
+    longitude: null,
   },
 };
 
@@ -35,6 +39,14 @@ export default function Query(state = INITIAL_STATE, action) {
       return {
         ...state,
         region: action.bounds,
+      };
+    case 'SET_USER_LOCATION':
+      return {
+        ...state,
+        user: {
+          latitude: action.location.latitude,
+          longitude: action.location.longitude,
+        },
       };
     default:
       return state;
