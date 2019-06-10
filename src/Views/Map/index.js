@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import { StatusBar, KeyboardAvoidingView, PermissionsAndroid } from 'react-native';
+import {
+  StatusBar, KeyboardAvoidingView, PermissionsAndroid, Platform,
+} from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as TheActions from '~/store/actions';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -33,23 +36,29 @@ async function requestLocation(setUserLocation, setBounds, callbackSuccess) {
       },
     );
     if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-      // If assync storage is defined, goes to async storage location
-      // Else goes to userlocation
-      navigator.geolocation.getCurrentPosition((value) => {
+      navigator.geolocation.getCurrentPosition(async (value) => {
+        const region = await AsyncStorage.getItem('@region');
+        if (region != null) {
+          // If assync storage is defined, goes to async storage location
+          setBounds(JSON.parse(region));
+        } else {
+          // Else goes to userlocation
+          setBounds({
+            latitude: value.coords.latitude,
+            longitude: value.coords.longitude,
+            latitudeDelta: 0.01,
+            longitudeDelta: 0.01,
+          });
+        }
         setUserLocation(value.coords.latitude, value.coords.longitude);
-        setBounds({
-          latitude: value.coords.latitude,
-          longitude: value.coords.longitude,
-          latitudeDelta: 0.01,
-          longitudeDelta: 0.01,
-        });
-
         callbackSuccess();
       });
     } else {
-      // If assync storage is defined, goes to async storage location
-      // Else goes to default location (all Brazil)
-      console.log('NOT OK');
+      const region = await AsyncStorage.getItem('@region');
+      if (region != null) {
+        // If assync storage is defined, goes to async storage location
+        setBounds(JSON.parse(region));
+      }
     }
   } catch (error) {
     console.log(error);
@@ -64,18 +73,24 @@ class Map extends Component {
   state = {};
 
   async componentDidMount() {
-    await requestLocation(this.props.setUserLocation, this.props.setBounds, this.watchID);
+    if (Platform.OS == 'android') {
+      await requestLocation(this.props.setUserLocation, this.props.setBounds, this.watchID);
+    } else {
+      this.watchID();
+    }
   }
 
-  watchID = () => {
-    navigator.geolocation.watchPosition(
-      (position) => {
-        this.props.setUserLocation(position.coords.latitude, position.coords.longitude);
-      },
-      () => {},
-      { enableHighAccuracy: true, distanceFilter: 0 },
-    );
-  };
+  componentWillUnmount() {
+    navigator.geolocation.clearWatch(this.watchID);
+  }
+
+  watchID = () => navigator.geolocation.watchPosition(
+    (position) => {
+      this.props.setUserLocation(position.coords.latitude, position.coords.longitude);
+    },
+    () => {},
+    { enableHighAccuracy: true, distanceFilter: 10 },
+  );
 
   render() {
     return (

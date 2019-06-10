@@ -6,11 +6,20 @@ import * as TheActions from '~/store/actions';
 import { withNavigation } from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { colors, metrics } from '~/styles';
+import AsyncStorage from '@react-native-community/async-storage';
 import mapStyle from './mapstyle';
 
 import List from '~/components/List';
 
 import { Container, styles } from './styles';
+
+const setStorage = async (region) => {
+  try {
+    await AsyncStorage.setItem('@region', JSON.stringify(region));
+  } catch (error) {
+    // Do nothing;
+  }
+};
 
 const MapGoogle = ({
   uri, setBounds, navigation, property, filters, getProperties,
@@ -23,6 +32,7 @@ const MapGoogle = ({
       onRegionChangeComplete={(region) => {
         setBounds(region);
         getProperties(region, filters);
+        setStorage(region);
       }}
     >
       {property.map(item => (
