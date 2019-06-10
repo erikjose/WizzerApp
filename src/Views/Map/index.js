@@ -77,12 +77,12 @@ class Map extends Component {
       await requestLocation(this.props.setUserLocation, this.props.setBounds, this.watchID);
     } else {
       navigator.geolocation.getCurrentPosition(async (value) => {
+        console.tron.log(value);
+
         const region = await AsyncStorage.getItem('@region');
         if (region != null) {
-          // If assync storage is defined, goes to async storage location
           this.props.setBounds(JSON.parse(region));
         } else {
-          // Else goes to userlocation
           this.props.setBounds({
             latitude: value.coords.latitude,
             longitude: value.coords.longitude,
@@ -90,6 +90,7 @@ class Map extends Component {
             longitudeDelta: 0.01,
           });
         }
+
         this.props.setUserLocation(value.coords.latitude, value.coords.longitude);
         this.watchID();
       });
