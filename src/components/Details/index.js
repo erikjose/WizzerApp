@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Intl from 'intl';
+import locale from 'intl/locale-data/jsonp/pt-BR';
 import {
   StatusBar, Image, View, Text,
 } from 'react-native';
@@ -42,7 +44,12 @@ class Details extends Component {
         <StatusBar hidden />
         <ContainerScroll>
           <DetailsContainer>
-            <DetailsPrice>{property.price}</DetailsPrice>
+            <DetailsPrice>
+              {new Intl.NumberFormat(locale, {
+                style: 'currency',
+                currency: 'BRL',
+              }).format(property.price)}
+            </DetailsPrice>
             <DetailsTransaction transaction={property.transaction}>
               <DetailsTransactionText>{property.transaction}</DetailsTransactionText>
             </DetailsTransaction>
@@ -119,7 +126,12 @@ class Details extends Component {
               />
               <View style={{ flex: 1, flexDirection: 'row' }}>
                 <Text style={styles.espTitle}>Condomínio:</Text>
-                <Text style={styles.espText}>{property.condo}</Text>
+                <Text style={styles.espText}>
+                  {new Intl.NumberFormat(locale, {
+                    style: 'currency',
+                    currency: 'BRL',
+                  }).format(property.condo)}
+                </Text>
               </View>
             </View>
             <View

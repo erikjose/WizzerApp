@@ -43,7 +43,7 @@ export const RenderItemList = styled.TouchableOpacity.attrs({
   background-color: ${colors.white};
   margin-bottom: ${metrics.baseMargin};
   /* border-bottom-color: ${colors.secundary}; */
-  border-bottom-color: ${props => (props.transaction === 'Comprar' ? `${colors.primary}` : `${colors.secundary}`)};
+  border-bottom-color: ${props => (props.transaction === 'vender' ? `${colors.primary}` : `${colors.secundary}`)};
   border-bottom-width: 2px;
 
   shadow-color: ${colors.darker};
@@ -68,7 +68,7 @@ export const TransactionBox = styled.View`
   position: absolute;
   top: 0;
   left: 0;
-  background: ${props => (props.transaction === 'Comprar' ? `${colors.primary}` : `${colors.secundary}`)};
+  background: ${props => (props.transaction === 'vender' ? `${colors.primary}` : `${colors.secundary}`)};
   padding: 10px ${metrics.basePadding}px;
 `;
 
@@ -79,6 +79,7 @@ export const TransactionText = styled.Text`
   font-size: 14px;
   font-weight: 500;
   opacity: 1;
+  text-transform: capitalize;
 `;
 
 export const DetailItem = styled.View`

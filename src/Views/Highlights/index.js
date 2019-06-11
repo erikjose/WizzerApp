@@ -3,6 +3,8 @@ import { View, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { connect } from 'react-redux';
+import Intl from 'intl';
+import locale from 'intl/locale-data/jsonp/pt-BR';
 
 import {
   Container,
@@ -33,16 +35,25 @@ const Highlights = ({ property }) => (
     <RenderList
       data={property}
       renderItem={({ item }) => (
-        <RenderItemList transaction={item.transation}>
+        <RenderItemList transaction={item.transaction}>
           <HeaderItem>
-            <ItemImage source={item.image[0]} resizeMethod="resize" resizeMode="cover" />
-            <TransactionBox transaction={item.transation}>
-              <TransactionText>{item.transation}</TransactionText>
+            <ItemImage
+              source={{ uri: `https://api.wizzer.com.br/storage/${item.property.picture[0]}` }}
+              resizeMethod="resize"
+              resizeMode="cover"
+            />
+            <TransactionBox transaction={item.transaction}>
+              <TransactionText>{item.transaction}</TransactionText>
             </TransactionBox>
           </HeaderItem>
           <InfoBox>
             <GeneralInfo>
-              <PriceText>{item.price}</PriceText>
+              <PriceText>
+                {new Intl.NumberFormat(locale, {
+                  style: 'currency',
+                  currency: 'BRL',
+                }).format(item.price)}
+              </PriceText>
               <PropertyInfo>
                 <DetailItem>
                   <Text>Teste</Text>
@@ -58,13 +69,15 @@ const Highlights = ({ property }) => (
               </PropertyInfo>
             </GeneralInfo>
             <AddressInfo>
-              <AddressText>{`${item.address}, ${item.number}`}</AddressText>
-              <CityText>{`${item.neighborhood} - ${item.city}, ${item.state}`}</CityText>
+              <AddressText>{`${item.property.street}, ${item.property.number}`}</AddressText>
+              <CityText>
+                {`${item.property.neighborhood} - ${item.property.city}, ${item.property.state}`}
+              </CityText>
             </AddressInfo>
           </InfoBox>
         </RenderItemList>
       )}
-      keyExtractor={item => item.id}
+      keyExtractor={item => item.advert_id.toString()}
     />
   </Container>
 );

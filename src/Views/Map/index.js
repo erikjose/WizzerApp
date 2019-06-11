@@ -76,24 +76,33 @@ class Map extends Component {
     if (Platform.OS == 'android') {
       await requestLocation(this.props.setUserLocation, this.props.setBounds, this.watchID);
     } else {
-      navigator.geolocation.getCurrentPosition(async (value) => {
-        console.tron.log(value);
+      navigator.geolocation.getCurrentPosition(
+        async (value) => {
+          console.tron.log(value);
 
-        const region = await AsyncStorage.getItem('@region');
-        if (region != null) {
-          this.props.setBounds(JSON.parse(region));
-        } else {
-          this.props.setBounds({
-            latitude: value.coords.latitude,
-            longitude: value.coords.longitude,
-            latitudeDelta: 0.01,
-            longitudeDelta: 0.01,
-          });
-        }
+          const region = await AsyncStorage.getItem('@region');
+          if (region != null) {
+            this.props.setBounds(JSON.parse(region));
+          } else {
+            this.props.setBounds({
+              latitude: value.coords.latitude,
+              longitude: value.coords.longitude,
+              latitudeDelta: 0.01,
+              longitudeDelta: 0.01,
+            });
+          }
 
-        this.props.setUserLocation(value.coords.latitude, value.coords.longitude);
-        this.watchID();
-      });
+          this.props.setUserLocation(value.coords.latitude, value.coords.longitude);
+          this.watchID();
+        },
+        async () => {
+          const region = await AsyncStorage.getItem('@region');
+          if (region != null) {
+            // If assync storage is defined, goes to async storage location
+            setBounds(JSON.parse(region));
+          }
+        },
+      );
     }
   }
 

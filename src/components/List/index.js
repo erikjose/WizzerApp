@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withNavigation } from 'react-navigation';
+import Intl from 'intl';
+import locale from 'intl/locale-data/jsonp/pt-BR';
 
 import {
   Container,
@@ -29,7 +30,7 @@ const ListProperty = ({ property, navigation }) => (
       <ListItem onPress={() => handleNavigation(navigation, item)} transaction={item.transaction}>
         <HeaderItem>
           <ItemImage
-            source={require('~/assets/placeholder.jpg')}
+            source={{ uri: `https://api.wizzer.com.br/storage/${item.property.picture[0]}` }}
             resizeMethod="resize"
             resizeMode="cover"
           />
@@ -39,7 +40,12 @@ const ListProperty = ({ property, navigation }) => (
         </HeaderItem>
         <InfoBox>
           <GeneralInfo>
-            <PriceText>{item.price}</PriceText>
+            <PriceText>
+              {new Intl.NumberFormat(locale, {
+                style: 'currency',
+                currency: 'BRL',
+              }).format(item.price)}
+            </PriceText>
             <PropertyInfo />
           </GeneralInfo>
           <AddressInfo>

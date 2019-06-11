@@ -32,7 +32,14 @@ const MapGoogle = ({
       onRegionChangeComplete={(region) => {
         setBounds(region);
         getProperties(region, filters);
-        setStorage(region);
+        if (
+          !(
+            region.latitude == -14.902322
+            && region.longitude == -54.18457
+            && region.latitudeDelta == 41.348938
+            && region.longitudeDelta == 41.132812
+          )
+        ) setStorage(region);
       }}
     >
       {property.map(item => (
@@ -57,7 +64,7 @@ const MapGoogle = ({
         </Marker>
       ) : null}
     </MapView>
-    {/* <List navigation={navigation} /> */}
+    <List navigation={navigation} />
   </Container>
 );
 
