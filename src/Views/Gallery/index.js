@@ -63,7 +63,6 @@ class GalleryMain extends Component {
         <Gallery
           style={{ flex: 1, backgroundColor: 'black', width: '100%' }}
           images={images}
-          key={item => item.property.id}
           onPageScroll={(event) => {
             this.setState({
               currentImage: event.position + 1,
