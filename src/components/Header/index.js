@@ -1,5 +1,6 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import AsyncStorage from '@react-native-community/async-storage';
 import { colors } from '~/styles';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -9,6 +10,23 @@ import api from '~/services/api';
 import {
   Container, SearchBox, SearchInput, SearchButton,
 } from './styles';
+
+const getQuery = async (query) => {
+  let newValue = [];
+  const storageQuery = JSON.parse(await AsyncStorage.getItem('@Query:uri'));
+
+  if (storageQuery === null) {
+    newValue.push(query);
+  } else {
+    const uriFilter = storageQuery.filter(item => item !== query);
+    if (uriFilter.length > 9) {
+      uriFilter.pop();
+    }
+    newValue = [query, ...uriFilter];
+  }
+
+  await AsyncStorage.setItem('@Query:uri', JSON.stringify(newValue));
+};
 
 const getGeocode = async (query, setGeocode, region, filters, getProperties) => {
   try {
@@ -21,6 +39,8 @@ const getGeocode = async (query, setGeocode, region, filters, getProperties) => 
     setGeocode(geocode);
 
     getProperties(region, filters);
+
+    getQuery(query);
   } catch (error) {
     console.log(error);
   }
