@@ -68,7 +68,7 @@ class Property extends Component {
               style={[styles.arrowTop, { transform: [{ rotate: isUp ? '180deg' : '0deg' }] }]}
             />
           </ArrowTop>
-          <Details property={property} />
+          <Details property={property} navigation={navigation} />
         </Animated.View>
       </Container>
     );

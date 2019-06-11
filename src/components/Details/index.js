@@ -38,7 +38,7 @@ class Details extends Component {
   hendlerAnimate = () => {};
 
   render() {
-    const { property } = this.props;
+    const { property, navigation } = this.props;
     return (
       <View style={[styles.container, { flex: 1 }]}>
         <StatusBar hidden />
@@ -200,7 +200,7 @@ class Details extends Component {
           </ContentDescription>
         </ContainerScroll>
         <ContentButton>
-          <ButtonProperty>Falar com anunciante</ButtonProperty>
+          <ButtonProperty navigation={navigation}>Falar com anunciante</ButtonProperty>
         </ContentButton>
       </View>
     );

@@ -12,6 +12,7 @@ import History from '~/Views/History';
 import More from '~/Views/More';
 import Property from '~/Views/Property';
 import GalleryMain from '~/Views/Gallery';
+import Talk from '~/Views/TalkAdvertiser';
 
 const Route = createAppContainer(
   createStackNavigator(
@@ -39,6 +40,7 @@ const Route = createAppContainer(
       ),
       Property,
       GalleryMain,
+      Talk,
     },
     {
       headerMode: 'none',
