@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as TheActions from '~/store/actions';
 import api from '~/services/api';
+import { Keyboard } from 'react-native';
 
 import {
   Container, SearchBox, SearchInput, SearchButton,
@@ -29,6 +30,7 @@ const getQuery = async (query) => {
 };
 
 const getGeocode = async (query, setGeocode, region, filters, getProperties) => {
+  Keyboard.dismiss();
   try {
     const response = await api.get('/geocode', {
       params: { query },
@@ -56,6 +58,8 @@ const Header = ({
         placeholder="Pesquise aqui"
         value={uri.query}
         onChangeText={text => setQuery(text)}
+        onSubmitEditing={() => getGeocode(uri.query, setGeocode, uri.region, filters.filters, getProperties)
+        }
       />
       <SearchButton
         onPress={() => getGeocode(uri.query, setGeocode, uri.region, filters.filters, getProperties)
