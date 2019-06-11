@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import {
-  StatusBar, KeyboardAvoidingView, PermissionsAndroid, Platform,
+  StatusBar,
+  KeyboardAvoidingView,
+  PermissionsAndroid,
+  Platform,
+  TouchableWithoutFeedback,
+  View,
+  Keyboard,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -123,8 +129,12 @@ class Map extends Component {
       <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" enabled>
         <Container>
           <StatusBar hidden={false} />
-          <MapGoogle />
-          <Filters />
+          <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
+            <View style={{ flex: 1, flexDirection: 'column-reverse' }}>
+              <MapGoogle />
+              <Filters />
+            </View>
+          </TouchableWithoutFeedback>
           <Header />
         </Container>
       </KeyboardAvoidingView>
