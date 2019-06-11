@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, View, TextInput } from 'react-native';
+import { Switch, View, TextInput, Keyboard } from 'react-native';
 import Intl from 'intl';
 import locale from 'intl/locale-data/jsonp/pt-BR';
 import { bindActionCreators } from 'redux';
@@ -172,6 +172,7 @@ class Filters extends Component {
                     }
                     this.setState({ filters });
                   }}
+                  onSubmitEditing={Keyboard.dismiss}
                   value={(new Intl.NumberFormat(locale, {
                     style: 'currency',
                     currency: 'BRL',
@@ -206,6 +207,7 @@ class Filters extends Component {
                     }
                     this.setState({ filters });
                   }}
+                  onSubmitEditing={Keyboard.dismiss}
                   value={(new Intl.NumberFormat(locale, {
                     style: 'currency',
                     currency: 'BRL',
@@ -497,6 +499,7 @@ class Filters extends Component {
                     filters.area.min = text;
                     this.setState({ filters });
                   }}
+                  onSubmitEditing={Keyboard.dismiss}
                 />
                 <ContentItemText
                   style={{
@@ -521,6 +524,7 @@ class Filters extends Component {
                     filters.area.max = text;
                     this.setState({ filters });
                   }}
+                  onSubmitEditing={Keyboard.dismiss}
                 />
               </ContentItem>
               <ContentItem>
@@ -546,6 +550,7 @@ class Filters extends Component {
                     }
                     this.setState({ filters });
                   }}
+                  onSubmitEditing={Keyboard.dismiss}
                   value={(new Intl.NumberFormat(locale, {
                     style: 'currency',
                     currency: 'BRL',
@@ -580,7 +585,7 @@ class Filters extends Component {
                     }
                     this.setState({ filters });
                   }}
-
+                  onSubmitEditing={Keyboard.dismiss}
                   value={(new Intl.NumberFormat(locale, {
                     style: 'currency',
                     currency: 'BRL',
