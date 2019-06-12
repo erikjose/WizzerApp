@@ -1,75 +1,96 @@
 import React, { Component } from 'react';
-import {
-  View, TouchableOpacity, Share, Animated,
-} from 'react-native';
+import { Animated } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { metrics } from '~/styles';
+import { PanGestureHandler, State } from 'react-native-gesture-handler';
 
-// Components
+import {
+  styles,
+  Container,
+  Header,
+  BackButton,
+  ShareButton,
+  DetailsBox,
+  DetailsArrow,
+} from './styles';
+
 import Gallery from '~/components/Gallery';
 import Details from '~/components/Details';
 
-import {
-  styles, Container, HeaderNav, ControllButton, ArrowTop,
-} from './styles';
-
-const shareOptions = {
-  title: 'Title',
-  message: 'Message to share', // Note that according to the documentation at least one of "message" or "url" fields is required
-  url: 'www.example.com',
-  subject: 'Subject',
-};
-
 class Property extends Component {
-  state = {
-    positionY: new Animated.Value(70),
-    isUp: false,
+  state = { isUp: false };
+
+  offset = 0;
+
+  translateY = new Animated.Value(0);
+
+  panAnimationHandler = (event) => {
+    if (event.nativeEvent.oldState === State.ACTIVE) {
+      const { translationY } = event.nativeEvent;
+
+      if (translationY < 0) {
+        Animated.timing(this.translateY, { toValue: -300, duration: 500 }).start(() => {
+          this.translateY.setOffset(-300);
+          this.translateY.setValue(0);
+        });
+      } else {
+        this.translateY.setValue(-300 + translationY);
+        this.translateY.setOffset(0);
+        Animated.timing(this.translateY, { toValue: 0, duration: 500 }).start(() => {
+          this.translateY.setOffset(0);
+          this.translateY.setValue(0);
+        });
+      }
+    }
   };
 
-  hendlerAnimate = () => {
-    Animated.timing(this.state.positionY, {
-      toValue: this.state.isUp ? 70 : 10,
-      duration: 500,
-    }).start();
+  animationHandler = () => {
+    const { isUp } = this.state;
 
-    this.setState({ isUp: !this.state.isUp });
+    Animated.timing(this.translateY, { toValue: isUp ? -300 : 0, duration: 500 }).start(() => {
+      // this.offset = isUp ? -300 : 0;
+      // this.translateY.setOffset(this.offset);
+      // this.translateY.setValue(0);
+    });
   };
 
   render() {
     const { navigation } = this.props;
-    const { positionY, isUp } = this.state;
     const property = navigation.getParam('property');
     return (
       <Container>
-        <HeaderNav>
-          <ControllButton onPress={() => navigation.pop()}>
-            <Icon name="arrow-left" size={25} style={styles.arrowReturn} />
-          </ControllButton>
-          <ControllButton onPress={() => Share.share(shareOptions)}>
-            <Icon name="share-outline" size={25} style={styles.share} />
-          </ControllButton>
-        </HeaderNav>
-        <View style={{ height: '70%', zIndex: 1 }}>
-          <Gallery property={property} navigation={navigation} />
-        </View>
-        <Animated.View
-          style={[
-            styles.details,
-            {
-              top: positionY.interpolate({ inputRange: [10, 70], outputRange: ['10%', '70%'] }),
-              height: positionY.interpolate({ inputRange: [10, 70], outputRange: ['90%', '30%'] }),
-            },
-          ]}
+        <Header>
+          <BackButton>
+            <Icon name="arrow-left" size={25} style={styles.backIcon} />
+          </BackButton>
+          <ShareButton>
+            <Icon name="share-outline" size={25} style={styles.shareIcon} />
+          </ShareButton>
+        </Header>
+        <Gallery property={property} navigation={navigation} />
+        <PanGestureHandler
+          onGestureEvent={Animated.event([{ nativeEvent: { translationY: this.translateY } }])}
+          onHandlerStateChange={this.panAnimationHandler}
         >
-          <ArrowTop onPress={() => this.hendlerAnimate()}>
-            <Icon
-              name="chevron-up"
-              size={20}
-              style={[styles.arrowTop, { transform: [{ rotate: isUp ? '180deg' : '0deg' }] }]}
-            />
-          </ArrowTop>
-          <Details property={property} />
-        </Animated.View>
+          <DetailsBox
+            style={{
+              top: this.translateY.interpolate({
+                inputRange: [-300, 0],
+                outputRange: ['10%', '70%'],
+                extrapolate: 'clamp',
+              }),
+              height: this.translateY.interpolate({
+                inputRange: [-300, 0],
+                outputRange: ['90%', '30%'],
+                extrapolate: 'clamp',
+              }),
+            }}
+          >
+            <DetailsArrow onPress={this.animationHandler}>
+              <Icon name="chevron-up" size={20} />
+            </DetailsArrow>
+            <Details property={property} />
+          </DetailsBox>
+        </PanGestureHandler>
       </Container>
     );
   }
