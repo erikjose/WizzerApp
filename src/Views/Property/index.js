@@ -88,7 +88,7 @@ class Property extends Component {
             <DetailsArrow onPress={this.animationHandler}>
               <Icon name="chevron-up" size={20} />
             </DetailsArrow>
-            <Details property={property} />
+            <Details property={property} navigation={navigation} />
           </DetailsBox>
         </PanGestureHandler>
       </Container>
