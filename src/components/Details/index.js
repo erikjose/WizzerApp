@@ -39,6 +39,7 @@ class Details extends Component {
 
   render() {
     const { property, navigation } = this.props;
+    console.tron.log('AQUI', property);
     return (
       <View style={[styles.container, { flex: 1 }]}>
         <StatusBar hidden />
@@ -200,7 +201,9 @@ class Details extends Component {
           </ContentDescription>
         </ContainerScroll>
         <ContentButton>
-          <ButtonProperty navigation={navigation}>Falar com anunciante</ButtonProperty>
+          <ButtonProperty navigation={navigation} advert={property}>
+            Falar com anunciante
+          </ButtonProperty>
         </ContentButton>
       </View>
     );

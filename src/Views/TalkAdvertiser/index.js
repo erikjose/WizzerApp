@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
-import { View, StatusBar, Text } from 'react-native';
+import {
+  View, StatusBar, ActivityIndicator, Text,
+} from 'react-native';
 import api from '~/services/api';
 import { metrics, colors } from '~/styles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { withFormik } from 'formik';
+// import Yup from 'yup';
+import * as Yup from 'yup';
 
 import {
   styles,
@@ -15,19 +20,26 @@ import {
   BoxTalk,
   TalkInput,
   TextTalk,
+  TalkArea,
+  TalkInputArea,
+  SubmitTalk,
+  SubmitText,
+  InfoView,
+  InfoViewPhoto,
+  ImageProfile,
+  InfoName,
+  InfoDetails,
 } from './styles';
 
 import logo from '~/assets/logo.png';
+import profile from '~/assets/boss.png';
 
 class Talk extends Component {
-  state = {
-    name: null,
-    email: null,
-    phone: null,
-  };
+  state = {};
 
   render() {
-    const { name, email, phone } = this.state;
+    const { navigation } = this.props;
+    const advert = navigation.getParam('advert');
     return (
       <Container>
         <StatusBar hidden={false} />
@@ -36,25 +48,82 @@ class Talk extends Component {
         </Header>
         <ContainerScroll>
           <InfoAdvertiser>
-            <Text>Info</Text>
+            <InfoViewPhoto>
+              <ImageProfile source={profile} rosizeMode="contain" resizeMethod="scale" />
+            </InfoViewPhoto>
+            <InfoView>
+              <InfoName>Erik José Silva</InfoName>
+              <InfoDetails>(35) 9 9733-2539</InfoDetails>
+              <InfoDetails>serikjose@gmail.com</InfoDetails>
+              <InfoDetails>CRECI: 123.121</InfoDetails>
+            </InfoView>
           </InfoAdvertiser>
 
           <TalkAdvertiser>
             <TextTalk>Falar com anunciante</TextTalk>
             <BoxTalk>
               <Icon name="account-outline" color={colors.regular} size={20} />
-              <TalkInput placeholder="Nome" value={name} />
+              <TalkInput
+                onChangeText={text => this.props.setFieldValue('name', text)}
+                value={this.props.values.name}
+                placeholder="Nome"
+                autoCapitalize="none"
+              />
             </BoxTalk>
+
+            {this.props.touched.name && this.props.errors.name && (
+                <Text>{this.props.errors.name}</Text>
+              )}
 
             <BoxTalk>
               <Icon name="email-open-outline" color={colors.regular} size={20} />
-              <TalkInput placeholder="Email" value={email} />
+              <TalkInput
+                onChangeText={text => this.props.setFieldValue('email', text)}
+                value={this.props.values.email}
+                placeholder="Email"
+                autoCapitalize="none"
+              />
             </BoxTalk>
+
+            {this.props.touched.email && this.props.errors.email && (
+                <Text>{this.props.errors.email}</Text>
+              )}
 
             <BoxTalk>
               <Icon name="cellphone-sound" color={colors.regular} size={20} />
-              <TalkInput placeholder="Telefone" value={phone} />
+              <TalkInput
+                onChangeText={text => this.props.setFieldValue('phone', text)}
+                value={this.props.values.phone}
+                placeholder="Telefone"
+                autoCapitalize="none"
+              />
             </BoxTalk>
+
+            {this.props.touched.phone && this.props.errors.phone && (
+                <Text>{this.props.errors.phone}</Text>
+              )}
+
+            <TalkArea>
+              <Icon name="message-text-outline" color={colors.regular} size={20} />
+              <TalkInputArea
+                onChangeText={text => this.props.setFieldValue('message', text)}
+                value={this.props.values.message}
+                placeholder="Digite sua mensagem"
+                autoCapitalize="none"
+                multiline
+              />
+            </TalkArea>
+            {this.props.touched.message && this.props.errors.message && (
+              <Text>{this.props.errors.message}</Text>
+            )}
+
+            <SubmitTalk onPress={this.props.handleSubmit}>
+              {this.props.isSubmitting ? (
+                <ActivityIndicator />
+              ) : (
+                <SubmitText>Enviar mensagem</SubmitText>
+              )}
+            </SubmitTalk>
           </TalkAdvertiser>
         </ContainerScroll>
       </Container>
@@ -62,4 +131,40 @@ class Talk extends Component {
   }
 }
 
-export default Talk;
+export default withFormik({
+  mapPropsToValues: () => ({
+    name: '',
+    email: '',
+    phone: '',
+    message: '',
+  }),
+
+  validationSchema: Yup.object().shape({
+    name: Yup.string('Preencha o campo Nome').required('Preencha o campo de e-mail'),
+    email: Yup.string()
+      .email('Digite um e-mail válido')
+      .required('Preencha o campo de Email'),
+    phone: Yup.string().required('Preencha o campo Telefone'),
+    message: Yup.string().required('Preencha o campo Mensagem'),
+  }),
+
+  handleSubmit: async (values, {
+    props, setSubmitting, setErrors, resetForm,
+  }) => {
+    const advert = props.navigation.getParam('advert');
+    console.tron.log(values, advert.advert_id);
+    // setSubmitting(false);
+    try {
+      const response = await api.post(`/prop/message/${advert.advert_id}`, values);
+
+      resetForm({});
+
+      console.tron.log(response.data);
+    } catch (err) {
+      console.tron.log(err.response);
+      setErrors({ message: 'Houve um problema, tenta novamente!' });
+    } finally {
+      setSubmitting(false);
+    }
+  },
+})(Talk);
