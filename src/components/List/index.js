@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Intl from 'intl';
 import locale from 'intl/locale-data/jsonp/pt-BR';
+import { Image, Text } from 'react-native';
+import getDirections from 'react-native-google-maps-directions';
 
 import { metrics } from '~/styles';
 
@@ -16,6 +18,8 @@ import {
   GeneralInfo,
   PriceText,
   PropertyInfo,
+  PropertyDetails,
+  NavigationButton,
   AddressInfo,
   AddressText,
   CityText,
@@ -34,8 +38,36 @@ class ListProperty extends Component {
     this.flatListRef.scrollToIndex({ animated: true, index: this.props.initialScrollIndex });
   };
 
+  handleNavigation = (property) => {
+    const { user } = this.props;
+    const data = {
+      source: {
+        latitude: user.latitude,
+        longitude: user.longitude,
+      },
+      destination: {
+        latitude: property.lat,
+        longitude: property.lng,
+      },
+      params: [
+        {
+          key: 'travelmode',
+          value: 'driving',
+        },
+        {
+          key: 'dir_action',
+          value: 'navigate',
+        },
+      ],
+    };
+
+    getDirections(data);
+  };
+
   render() {
-    const { property, navigation, initialScrollIndex } = this.props;
+    const {
+      property, navigation, initialScrollIndex, user,
+    } = this.props;
     return (
       <Container
         data={property}
@@ -71,7 +103,20 @@ class ListProperty extends Component {
                     currency: 'BRL',
                   }).format(item.price)}
                 </PriceText>
-                <PropertyInfo />
+                <PropertyInfo>
+                  <PropertyDetails />
+                  {user.latitude != null && user.longitude != null ? (
+                    <NavigationButton onPress={() => this.handleNavigation(item.property)}>
+                      <Image
+                        source={require('~/assets/navigation_icon.png')}
+                        resizeMethod="resize"
+                        resizeMode="contain"
+                        style={{ height: 25, opacity: 0.5 }}
+                      />
+                      <Text style={{ fontSize: 15, color: '#777', marginLeft: -15 }}>Rota</Text>
+                    </NavigationButton>
+                  ) : null}
+                </PropertyInfo>
               </GeneralInfo>
               <AddressInfo>
                 <AddressText>{`${item.property.street}, ${item.property.number}`}</AddressText>
@@ -90,6 +135,7 @@ class ListProperty extends Component {
 
 const mapStateToProps = state => ({
   property: state.properties.property,
+  user: state.query.user,
 });
 
 export default connect(mapStateToProps)(ListProperty);
