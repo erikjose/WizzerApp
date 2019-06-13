@@ -23,37 +23,37 @@ class Property extends Component {
 
   translateY = new Animated.Value(0);
 
+  animatedEvent = Animated.event([{ nativeEvent: { translationY: this.translateY } }]);
+
   panAnimationHandler = (event) => {
     if (event.nativeEvent.oldState === State.ACTIVE) {
       const { translationY } = event.nativeEvent;
 
+      this.offset += translationY;
+
       if (translationY < 0) {
-        Animated.timing(this.translateY, { toValue: -300, duration: 500 }).start(() => {
-          this.translateY.setOffset(-300);
-          this.translateY.setValue(0);
-        });
+        this.setState({ isUp: true });
       } else {
-        this.translateY.setValue(-300 + translationY);
+        this.setState({ isUp: false });
+        this.translateY.setValue(this.offset);
         this.translateY.setOffset(0);
-        Animated.timing(this.translateY, { toValue: 0, duration: 500 }).start(() => {
-          this.translateY.setOffset(0);
-          this.translateY.setValue(0);
-        });
       }
+
+      this.animationHandler();
     }
   };
 
   animationHandler = () => {
     const { isUp } = this.state;
-
     Animated.timing(this.translateY, { toValue: isUp ? -300 : 0, duration: 500 }).start(() => {
-      // this.offset = isUp ? -300 : 0;
-      // this.translateY.setOffset(this.offset);
-      // this.translateY.setValue(0);
+      this.offset = isUp ? -300 : 0;
+      this.translateY.setOffset(this.offset);
+      this.translateY.setValue(0);
     });
   };
 
   render() {
+    const { isUp } = this.state;
     const { navigation } = this.props;
     const property = navigation.getParam('property');
     return (
@@ -68,7 +68,7 @@ class Property extends Component {
         </Header>
         <Gallery property={property} navigation={navigation} />
         <PanGestureHandler
-          onGestureEvent={Animated.event([{ nativeEvent: { translationY: this.translateY } }])}
+          onGestureEvent={this.animatedEvent}
           onHandlerStateChange={this.panAnimationHandler}
         >
           <DetailsBox
@@ -85,7 +85,12 @@ class Property extends Component {
               }),
             }}
           >
-            <DetailsArrow onPress={this.animationHandler}>
+            <DetailsArrow
+              onPress={() => {
+                this.setState({ isUp: !isUp });
+                this.animationHandler();
+              }}
+            >
               <Icon name="chevron-up" size={20} />
             </DetailsArrow>
             <Details property={property} navigation={navigation} />
