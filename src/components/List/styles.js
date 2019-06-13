@@ -88,7 +88,9 @@ export const PropertyInfo = styled.View``;
 
 export const AddressInfo = styled.View``;
 
-export const AddressText = styled.Text`
+export const AddressText = styled.Text.attrs({
+  numberOfLines: 1,
+})`
   font-size: 18px;
   color: #353535;
   font-weight: 500;
