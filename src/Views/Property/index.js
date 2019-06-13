@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Animated } from 'react-native';
+import { Animated, Share } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { PanGestureHandler, State } from 'react-native-gesture-handler';
 
@@ -59,10 +59,10 @@ class Property extends Component {
     return (
       <Container>
         <Header>
-          <BackButton>
+          <BackButton onPress={() => navigation.pop()}>
             <Icon name="arrow-left" size={25} style={styles.backIcon} />
           </BackButton>
-          <ShareButton>
+          <ShareButton onPress={() => Share.share(shareOptions)}>
             <Icon name="share-outline" size={25} style={styles.shareIcon} />
           </ShareButton>
         </Header>
