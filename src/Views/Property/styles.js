@@ -42,10 +42,10 @@ export const ShareButton = styled.TouchableOpacity.attrs({
 
 export const DetailsBox = styled(Animated.View)`
   position: absolute;
-  top: 70%;
+  top: 65%;
   left: 0;
   right: 0;
-  height: 30%;
+  height: 35%;
   background: ${colors.white};
   z-index: 5;
 `;

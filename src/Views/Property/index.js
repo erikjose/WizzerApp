@@ -75,12 +75,12 @@ class Property extends Component {
             style={{
               top: this.translateY.interpolate({
                 inputRange: [-300, 0],
-                outputRange: ['10%', '70%'],
+                outputRange: ['10%', '67%'],
                 extrapolate: 'clamp',
               }),
               height: this.translateY.interpolate({
                 inputRange: [-300, 0],
-                outputRange: ['90%', '30%'],
+                outputRange: ['90%', '33%'],
                 extrapolate: 'clamp',
               }),
             }}
