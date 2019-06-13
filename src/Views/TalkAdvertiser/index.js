@@ -29,21 +29,29 @@ import {
   ImageProfile,
   InfoName,
   InfoDetails,
+  BackButton,
 } from './styles';
 
 import logo from '~/assets/logo.png';
 import profile from '~/assets/boss.png';
 
 class Talk extends Component {
-  state = {};
+  state = {
+    success: null,
+  };
 
   render() {
     const { navigation } = this.props;
     const advert = navigation.getParam('advert');
+
+    console.tron.log(advert);
     return (
       <Container>
         <StatusBar hidden={false} />
         <Header>
+          <BackButton onPress={() => navigation.pop()}>
+            <Icon name="arrow-left" size={25} style={styles.backIcon} />
+          </BackButton>
           <Logo source={logo} resizeMode="contain" resizeMethod="scale" />
         </Header>
         <ContainerScroll>
@@ -55,6 +63,7 @@ class Talk extends Component {
               <InfoName>Erik José Silva</InfoName>
               <InfoDetails>(35) 9 9733-2539</InfoDetails>
               <InfoDetails>serikjose@gmail.com</InfoDetails>
+              <InfoDetails>www.wizzer.com.br</InfoDetails>
               <InfoDetails>CRECI: 123.121</InfoDetails>
             </InfoView>
           </InfoAdvertiser>
@@ -72,8 +81,8 @@ class Talk extends Component {
             </BoxTalk>
 
             {this.props.touched.name && this.props.errors.name && (
-                <Text>{this.props.errors.name}</Text>
-              )}
+              <Text style={styles.textDanger}>{this.props.errors.name}</Text>
+            )}
 
             <BoxTalk>
               <Icon name="email-open-outline" color={colors.regular} size={20} />
@@ -86,8 +95,8 @@ class Talk extends Component {
             </BoxTalk>
 
             {this.props.touched.email && this.props.errors.email && (
-                <Text>{this.props.errors.email}</Text>
-              )}
+              <Text style={styles.textDanger}>{this.props.errors.email}</Text>
+            )}
 
             <BoxTalk>
               <Icon name="cellphone-sound" color={colors.regular} size={20} />
@@ -100,8 +109,8 @@ class Talk extends Component {
             </BoxTalk>
 
             {this.props.touched.phone && this.props.errors.phone && (
-                <Text>{this.props.errors.phone}</Text>
-              )}
+              <Text style={styles.textDanger}>{this.props.errors.phone}</Text>
+            )}
 
             <TalkArea>
               <Icon name="message-text-outline" color={colors.regular} size={20} />
@@ -114,7 +123,11 @@ class Talk extends Component {
               />
             </TalkArea>
             {this.props.touched.message && this.props.errors.message && (
-              <Text>{this.props.errors.message}</Text>
+              <Text style={styles.textDanger}>{this.props.errors.message}</Text>
+            )}
+
+            {this.props.status && this.props.status.success && (
+              <Text style={styles.success}>{this.props.status.success}</Text>
             )}
 
             <SubmitTalk onPress={this.props.handleSubmit}>
@@ -149,20 +162,23 @@ export default withFormik({
   }),
 
   handleSubmit: async (values, {
-    props, setSubmitting, setErrors, resetForm,
+    props, setSubmitting, setErrors, resetForm, setStatus,
   }) => {
     const advert = props.navigation.getParam('advert');
-    console.tron.log(values, advert.advert_id);
     // setSubmitting(false);
     try {
       const response = await api.post(`/prop/message/${advert.advert_id}`, values);
 
-      resetForm({});
+      console.tron.log(response);
 
-      console.tron.log(response.data);
+      setStatus({ success: 'Mensagem enviada com sucesso!' });
+
+      setTimeout(() => {
+        resetForm({});
+      }, 3000);
     } catch (err) {
-      console.tron.log(err.response);
-      setErrors({ message: 'Houve um problema, tenta novamente!' });
+      console.tron.log(err);
+      setErrors({ message: 'Houve um problema, tente novamente!' });
     } finally {
       setSubmitting(false);
     }

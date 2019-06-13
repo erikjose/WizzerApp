@@ -3,7 +3,24 @@ import styled from 'styled-components';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { metrics, colors } from '~/styles';
 
-export const styles = StyleSheet.create({});
+export const styles = StyleSheet.create({
+  textDanger: {
+    color: colors.danger,
+    fontSize: 14,
+    fontWeight: '300',
+    marginBottom: 15,
+  },
+  success: {
+    color: colors.sucess,
+    fontSize: 14,
+    fontWeight: '500',
+    marginBottom: 15,
+    textAlign: 'center',
+  },
+  backIcon: {
+    color: colors.darker,
+  },
+});
 
 export const Container = styled.View`
   flex: 1;
@@ -33,6 +50,7 @@ export const InfoAdvertiser = styled.View`
   flex-direction: row;
   margin: 20px 0 30px;
   flex: 1;
+  align-items: center;
 `;
 
 export const TalkAdvertiser = styled.View``;
@@ -99,7 +117,6 @@ export const SubmitText = styled.Text`
 
 export const InfoView = styled.View`
   flex: 1;
-  flex-wrap: wrap;
 `;
 
 export const InfoViewPhoto = styled.View`
@@ -126,7 +143,11 @@ export const InfoDetails = styled.Text`
   color: ${colors.darker};
 `;
 
-// InfoName,
-//   InfoPhone,
-//   InfoCreci,
-//   InforEmail,
+export const BackButton = styled.TouchableOpacity.attrs({
+  activeOpacity: 1,
+})`
+  position: absolute;
+  top: 15px;
+  left: 10px;
+  z-index: 2;
+`;
