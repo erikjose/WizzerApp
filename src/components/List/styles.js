@@ -84,7 +84,19 @@ export const PriceText = styled.Text`
   font-weight: 500;
 `;
 
-export const PropertyInfo = styled.View``;
+export const PropertyInfo = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+`;
+
+export const PropertyDetails = styled.View``;
+
+export const NavigationButton = styled.TouchableOpacity`
+  flex-direction: row;
+  align-items: center;
+`;
 
 export const AddressInfo = styled.View``;
 
