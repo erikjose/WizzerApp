@@ -20,7 +20,22 @@ export const styles = StyleSheet.create({
     color: colors.darker,
   },
   espText: {
-    fontSize: 18, fontWeight: '300', color: colors.darker, marginLeft: 5,
+    fontSize: 18,
+    fontWeight: '300',
+    color: colors.darker,
+    marginLeft: 5,
+  },
+  containerList: {
+    flex: 1,
+    flexDirection: 'row',
+    marginTop: 10,
+    alignItems: 'center',
+  },
+  markers: {
+    height: 15,
+    width: 15,
+    backgroundColor: '#DDD',
+    marginRight: 10,
   },
 });
 

@@ -6,6 +6,7 @@ import api from '~/services/api';
 import { metrics, colors } from '~/styles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { withFormik } from 'formik';
+import { TextInputMask } from 'react-native-masked-text';
 // import Yup from 'yup';
 import * as Yup from 'yup';
 
@@ -60,11 +61,18 @@ class Talk extends Component {
               <ImageProfile source={profile} rosizeMode="contain" resizeMethod="scale" />
             </InfoViewPhoto>
             <InfoView>
-              <InfoName>Erik José Silva</InfoName>
-              <InfoDetails>(35) 9 9733-2539</InfoDetails>
-              <InfoDetails>serikjose@gmail.com</InfoDetails>
-              <InfoDetails>www.wizzer.com.br</InfoDetails>
-              <InfoDetails>CRECI: 123.121</InfoDetails>
+              <InfoName>{advert.user_name}</InfoName>
+              {advert.phone.map((item, index) => (
+                <View style={{ flexDirection: 'row', alignItems: 'center' }} key={index}>
+                  <InfoDetails style={{ marginRight: 5 }}>{item[0]}</InfoDetails>
+                  {item[1] && <Icon name="whatsapp" size={20} style={{ color: colors.sucess }} />}
+                </View>
+              ))}
+              {advert.email.map((item, index) => (
+                <InfoDetails key={index}>{item}</InfoDetails>
+              ))}
+              {advert.site !== null && <InfoDetails>{advert.site}</InfoDetails>}
+              {advert.creci !== null && <InfoDetails>{advert.creci}</InfoDetails>}
             </InfoView>
           </InfoAdvertiser>
 
@@ -100,7 +108,14 @@ class Talk extends Component {
 
             <BoxTalk>
               <Icon name="cellphone-sound" color={colors.regular} size={20} />
-              <TalkInput
+              <TextInputMask
+                type="cel-phone"
+                options={{
+                  maskType: 'BRL',
+                  withDDD: true,
+                  dddMask: '(99) ',
+                }}
+                style={styles.maskInput}
                 onChangeText={text => this.props.setFieldValue('phone', text)}
                 value={this.props.values.phone}
                 placeholder="Telefone"
@@ -175,7 +190,7 @@ export default withFormik({
 
       setTimeout(() => {
         resetForm({});
-      }, 3000);
+      }, 1000);
     } catch (err) {
       console.tron.log(err);
       setErrors({ message: 'Houve um problema, tente novamente!' });

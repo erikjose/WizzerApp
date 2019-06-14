@@ -16,6 +16,13 @@ import {
 import Gallery from '~/components/Gallery';
 import Details from '~/components/Details';
 
+const shareOptions = {
+  title: 'Wizzer Imóveis',
+  message: 'Message to share', // Note that according to the documentation at least one of "message" or "url" fields is required
+  url: 'www.wizzer.com.br',
+  // subject: 'Subject',
+};
+
 class Property extends Component {
   state = { isUp: false };
 

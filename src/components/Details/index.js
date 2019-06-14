@@ -74,7 +74,7 @@ class Details extends Component {
               />
               <SpecificationText>{property.property.bathrooms}</SpecificationText>
             </SpecificationItem>
-            <SpecificationItem>
+            <SpecificationItem> 
               <Image
                 source={parkingSpace}
                 resizeMethod="resize"
@@ -109,93 +109,98 @@ class Details extends Component {
             <DescriptionText>{property.property.description}</DescriptionText>
 
             <DescriptionTitle style={{ marginTop: 15 }}>Especificações</DescriptionTitle>
-            <View
-              style={{
-                flex: 1,
-                flexDirection: 'row',
-                marginTop: 10,
-                alignItems: 'center',
-              }}
-            >
-              <View
-                style={{
-                  height: 15,
-                  width: 15,
-                  backgroundColor: '#DDD',
-                  marginRight: 10,
-                }}
-              />
+            <View style={styles.containerList}>
+              <View style={styles.markers} />
               <View style={{ flex: 1, flexDirection: 'row' }}>
-                <Text style={styles.espTitle}>Condomínio:</Text>
+                <Text style={styles.espTitle}>Tipo do Imóvel:</Text>
+                {property.property.property_type.map((item, index) => {
+                  switch (item) {
+                    case 'apartment':
+                      return <Text style={styles.espText}>Apartamento;</Text>;
+                      break;
+                    case 'house':
+                      return <Text style={styles.espText}>Casa;</Text>;
+                      break;
+                    case 'condo':
+                      return <Text style={styles.espText}>Casa de Condomínio;</Text>;
+                      break;
+                    case 'farmhouse':
+                      return <Text style={styles.espText}>Chácara;</Text>;
+                      break;
+                    case 'flat':
+                      return <Text style={styles.espText}>Flat;</Text>;
+                      break;
+                    case 'studio':
+                      return <Text style={styles.espText}>Studio;</Text>;
+                      break;
+                    case 'land':
+                      return <Text style={styles.espText}>Terreno;</Text>;
+                      break;
+                    case 'roof':
+                      return <Text style={styles.espText}>Cobertura;</Text>;
+                      break;
+                    case 'warehouse':
+                      return <Text style={styles.espText}>Armazém/Galpão;</Text>;
+                      break;
+                    case 'commercial_set':
+                      return <Text style={styles.espText}>Conjunto Comercial;</Text>;
+                      break;
+                    case 'farm':
+                      return <Text style={styles.espText}>Fazenda/Sítio;</Text>;
+                      break;
+                    case 'store':
+                      return <Text style={styles.espText}>Loja;</Text>;
+                      break;
+                    case 'commercial_room':
+                      return <Text style={styles.espText}>Sala Comercial;</Text>;
+                      break;
+                    case 'commercial_building':
+                      return <Text style={styles.espText}>Prédio Comercial;</Text>;
+                      break;
+                    default:
+                      break;
+                  }
+                })}
+              </View>
+            </View>
+            {property.condo !== null && (
+              <View style={styles.containerList}>
+                <View style={styles.markers} />
+                <View style={{ flex: 1, flexDirection: 'row' }}>
+                  <Text style={styles.espTitle}>Condomínio:</Text>
+                  <Text style={styles.espText}>
+                    {new Intl.NumberFormat(locale, {
+                      style: 'currency',
+                      currency: 'BRL',
+                    }).format(property.condo)}
+                  </Text>
+                </View>
+              </View>
+            )}
+
+            {property.property.complement !== null && (
+              <View style={styles.containerList}>
+                <View style={styles.markers} />
+                <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                  <Text style={styles.espTitle}>Complemento:</Text>
+                  <Text style={styles.espText}>{property.property.complement}</Text>
+                </View>
+              </View>
+            )}
+            <View style={styles.containerList}>
+              <View style={styles.markers} />
+              <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                <Text style={styles.espTitle}>CEP:</Text>
                 <Text style={styles.espText}>
-                  {new Intl.NumberFormat(locale, {
-                    style: 'currency',
-                    currency: 'BRL',
-                  }).format(property.condo)}
+                  {`${property.property.cep.slice(0, 5)}-${property.property.cep.slice(-3)}`}
                 </Text>
               </View>
             </View>
-            <View
-              style={{
-                flex: 1,
-                flexDirection: 'row',
-                marginTop: 10,
-                alignItems: 'center',
-              }}
-            >
-              <View
-                style={{
-                  height: 15,
-                  width: 15,
-                  backgroundColor: '#DDD',
-                  marginRight: 10,
-                }}
-              />
-              <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                <Text style={styles.espTitle}>Complemento:</Text>
-                <Text style={styles.espText}>das</Text>
-              </View>
-            </View>
-            <View
-              style={{
-                flex: 1,
-                flexDirection: 'row',
-                marginTop: 10,
-                alignItems: 'center',
-              }}
-            >
-              <View
-                style={{
-                  height: 15,
-                  width: 15,
-                  backgroundColor: '#DDD',
-                  marginRight: 10,
-                }}
-              />
-              <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                <Text style={styles.espTitle}>CEP:</Text>
-                <Text style={styles.espText}>das</Text>
-              </View>
-            </View>
-            <View
-              style={{
-                flex: 1,
-                flexDirection: 'row',
-                marginTop: 10,
-                alignItems: 'center',
-              }}
-            >
-              <View
-                style={{
-                  height: 15,
-                  width: 15,
-                  backgroundColor: '#DDD',
-                  marginRight: 10,
-                }}
-              />
+            <View style={styles.containerList}>
+              <View style={styles.markers} />
               <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                 <Text style={styles.espTitle}>Dias no Wizzer:</Text>
-                <Text style={styles.espText}>das</Text>
+                <Text style={styles.espText}>{property.days_on_wizzer}</Text>
               </View>
             </View>
           </ContentDescription>

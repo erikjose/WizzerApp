@@ -10,9 +10,9 @@ import {
 } from './styles';
 
 const shareOptions = {
-  title: 'Title',
+  title: 'Wizzer Imóveis',
   message: 'Message to share', // Note that according to the documentation at least one of "message" or "url" fields is required
-  url: 'www.example.com',
+  url: 'www.wizzer.com.br',
   subject: 'Subject',
 };
 

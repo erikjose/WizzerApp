@@ -26,7 +26,7 @@ import {
   DetailItem,
 } from './styles';
 
-const Highlights = ({ property }) => (
+const Highlights = ({ property, navigation }, props) => (
   <Container>
     <Header>
       <Title>Destaques</Title>
@@ -35,7 +35,10 @@ const Highlights = ({ property }) => (
     <RenderList
       data={property}
       renderItem={({ item }) => (
-        <RenderItemList transaction={item.transaction}>
+        <RenderItemList
+          transaction={item.transaction}
+          onPress={() => navigation.navigate('Property', {property: item})}
+        >
           <HeaderItem>
             <ItemImage
               source={{ uri: `https://api.wizzer.com.br/storage/${item.property.picture[0]}` }}
@@ -54,19 +57,6 @@ const Highlights = ({ property }) => (
                   currency: 'BRL',
                 }).format(item.price)}
               </PriceText>
-              <PropertyInfo>
-                <DetailItem>
-                  <Text>Teste</Text>
-                </DetailItem>
-
-                <DetailItem>
-                  <Text>Teste</Text>
-                </DetailItem>
-
-                <DetailItem>
-                  <Text>Teste</Text>
-                </DetailItem>
-              </PropertyInfo>
             </GeneralInfo>
             <AddressInfo>
               <AddressText>{`${item.property.street}, ${item.property.number}`}</AddressText>
