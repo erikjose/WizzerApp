@@ -26,7 +26,7 @@ const More = () => (
       <SectionItem onPress={() => Linking.openURL('https://www.wizzer.com.br/')}>
         <Text style={styles.text}>Política de privacidade</Text>
       </SectionItem>
-      <SectionTitle> 
+      <SectionTitle>
         <Text style={styles.text}>Sobre o aplicativo</Text>
       </SectionTitle>
       <SectionItem onPress={() => Linking.openURL('market://details?id=com.whatsapp')}>

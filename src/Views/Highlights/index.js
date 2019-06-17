@@ -37,7 +37,7 @@ const Highlights = ({ property, navigation }, props) => (
       renderItem={({ item }) => (
         <RenderItemList
           transaction={item.transaction}
-          onPress={() => navigation.navigate('Property', {property: item})}
+          onPress={() => navigation.navigate('Property', { property: item })}
         >
           <HeaderItem>
             <ItemImage

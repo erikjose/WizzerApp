@@ -36,8 +36,8 @@ class MapGoogle extends Component {
     } = this.props;
     const { showList, initialScrollIndex } = this.state;
     return (
-      <Container>
-        <NavigationEvents onDidFocus={() => this.setStorage({showList: false, initialScrollIndex: null})} />
+      <Container> 
+        <NavigationEvents onDidFocus={() => this.setState({showList: false, initialScrollIndex: null})} />
         <MapView
           style={styles.mapView}
           region={uri.region}

@@ -74,7 +74,7 @@ class Details extends Component {
               />
               <SpecificationText>{property.property.bathrooms}</SpecificationText>
             </SpecificationItem>
-            <SpecificationItem> 
+            <SpecificationItem>
               <Image
                 source={parkingSpace}
                 resizeMethod="resize"
