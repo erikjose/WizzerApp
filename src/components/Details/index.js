@@ -116,46 +116,46 @@ class Details extends Component {
                 {property.property.property_type.map((item, index) => {
                   switch (item) {
                     case 'apartment':
-                      return <Text style={styles.espText}>Apartamento;</Text>;
+                      return <Text key={index} style={styles.espText}>Apartamento;</Text>;
                       break;
                     case 'house':
-                      return <Text style={styles.espText}>Casa;</Text>;
+                      return <Text key={index} style={styles.espText}>Casa;</Text>;
                       break;
                     case 'condo':
-                      return <Text style={styles.espText}>Casa de Condomínio;</Text>;
+                      return <Text key={index} style={styles.espText}>Casa de Condomínio;</Text>;
                       break;
                     case 'farmhouse':
-                      return <Text style={styles.espText}>Chácara;</Text>;
+                      return <Text key={index} style={styles.espText}>Chácara;</Text>;
                       break;
                     case 'flat':
-                      return <Text style={styles.espText}>Flat;</Text>;
+                      return <Text key={index} style={styles.espText}>Flat;</Text>;
                       break;
                     case 'studio':
-                      return <Text style={styles.espText}>Studio;</Text>;
+                      return <Text key={index} style={styles.espText}>Studio;</Text>;
                       break;
                     case 'land':
-                      return <Text style={styles.espText}>Terreno;</Text>;
+                      return <Text key={index} style={styles.espText}>Terreno;</Text>;
                       break;
                     case 'roof':
-                      return <Text style={styles.espText}>Cobertura;</Text>;
+                      return <Text key={index} style={styles.espText}>Cobertura;</Text>;
                       break;
                     case 'warehouse':
-                      return <Text style={styles.espText}>Armazém/Galpão;</Text>;
+                      return <Text key={index} style={styles.espText}>Armazém/Galpão;</Text>;
                       break;
                     case 'commercial_set':
-                      return <Text style={styles.espText}>Conjunto Comercial;</Text>;
+                      return <Text key={index} style={styles.espText}>Conjunto Comercial;</Text>;
                       break;
                     case 'farm':
-                      return <Text style={styles.espText}>Fazenda/Sítio;</Text>;
+                      return <Text key={index} style={styles.espText}>Fazenda/Sítio;</Text>;
                       break;
                     case 'store':
-                      return <Text style={styles.espText}>Loja;</Text>;
+                      return <Text key={index} style={styles.espText}>Loja;</Text>;
                       break;
                     case 'commercial_room':
-                      return <Text style={styles.espText}>Sala Comercial;</Text>;
+                      return <Text key={index} style={styles.espText}>Sala Comercial;</Text>;
                       break;
                     case 'commercial_building':
-                      return <Text style={styles.espText}>Prédio Comercial;</Text>;
+                      return <Text key={index} style={styles.espText}>Prédio Comercial;</Text>;
                       break;
                     default:
                       break;
