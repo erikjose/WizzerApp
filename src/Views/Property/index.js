@@ -16,13 +16,6 @@ import {
 import Gallery from '~/components/Gallery';
 import Details from '~/components/Details';
 
-const shareOptions = {
-  title: 'Wizzer Imóveis',
-  message: 'Message to share', // Note that according to the documentation at least one of "message" or "url" fields is required
-  url: 'www.wizzer.com.br',
-  // subject: 'Subject',
-};
-
 class Property extends Component {
   state = { isUp: false };
 
@@ -59,6 +52,18 @@ class Property extends Component {
     });
   };
 
+  handlerShare = async (property) => {
+    const url = `https://www.wizzer.com.br/anuncio/${property.advert_id}?query=${
+      property.property.city
+    }&transaction=comprar,alugar`;
+    Share.share({
+      title: 'Wizzer',
+      message: url,
+      url: 'www.wizzer.com.br',
+      // subject: 'Subject',
+    });
+  };
+
   render() {
     const { isUp } = this.state;
     const { navigation } = this.props;
@@ -69,7 +74,7 @@ class Property extends Component {
           <BackButton onPress={() => navigation.pop()}>
             <Icon name="arrow-left" size={25} style={styles.backIcon} />
           </BackButton>
-          <ShareButton onPress={() => Share.share(shareOptions)}>
+          <ShareButton onPress={() => this.handlerShare(property)}>
             <Icon name="share-outline" size={25} style={styles.shareIcon} />
           </ShareButton>
         </Header>

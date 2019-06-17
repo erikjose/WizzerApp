@@ -43,6 +43,18 @@ class GalleryMain extends Component {
     });
   };
 
+  handlerShare = async (property) => {
+    const url = `https://www.wizzer.com.br/anuncio/${property.advert_id}?query=${
+      property.property.city
+    }&transaction=comprar,alugar`;
+    Share.share({
+      title: 'Wizzer',
+      message: url,
+      url: 'www.wizzer.com.br',
+      // subject: 'Subject',
+    });
+  }; 
+
   render() {
     const { navigation } = this.props;
     const { images, currentImage } = this.state;
@@ -56,7 +68,7 @@ class GalleryMain extends Component {
             <Icon name="arrow-left" size={25} style={styles.arrowReturn} />
           </ControllButton>
           <DetailsText>{`${currentImage} de ${property.property.picture.length}`}</DetailsText>
-          <ControllButton onPress={() => Share.share(shareOptions)}>
+          <ControllButton onPress={() => this.handlerShare(property)}> 
             <Icon name="share-outline" size={25} style={styles.share} />
           </ControllButton>
         </GalleryNav>

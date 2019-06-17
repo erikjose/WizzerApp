@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		0089FE0CDF5A4A15AA6FE002 /* libRNVectorIcons-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D919B7BE66C94F7B94C404D5 /* libRNVectorIcons-tvOS.a */; };
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
@@ -43,6 +44,7 @@
 		31C2ECE874BE444C9060B17C /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0C6765FDE9394643AE0D1AB7 /* EvilIcons.ttf */; };
 		4797625E50AD4FD38EF13BB5 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 844C73CD808C4107B206C55B /* MaterialIcons.ttf */; };
 		61AC40F7BF204453B13E09DE /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 009B3E577CA54986ABF6C3DC /* Foundation.ttf */; };
+		632CE1C02E614F35A6E9498F /* libRNCAsyncStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4741C73437B5484F986745CF /* libRNCAsyncStorage.a */; };
 		74206B6CA61E4431AF432658 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 60EB850F9FC94D499D066469 /* SimpleLineIcons.ttf */; };
 		78868FC8B94749B2A34338F0 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 871F973DA3F34CB7A4CFE2DE /* AntDesign.ttf */; };
 		81DF051FB3E140FB8F613314 /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 87A5CAAB69774D9DB6575D5C /* libRNGestureHandler.a */; };
@@ -60,7 +62,6 @@
 		ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2971642150620600B7C4FE /* JavaScriptCore.framework */; };
 		F6219659229F127F009B4B92 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6219658229F127F009B4B92 /* GradientView.swift */; };
 		F7FEFF60DCD14EC0B1991924 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B54D7008129E4CDAA7ADFEB7 /* MaterialCommunityIcons.ttf */; };
-		632CE1C02E614F35A6E9498F /* libRNCAsyncStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4741C73437B5484F986745CF /* libRNCAsyncStorage.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -372,6 +373,13 @@
 			remoteGlobalIDString = B5C32A36220C603B000FFB8D;
 			remoteInfo = "RNGestureHandler-tvOS";
 		};
+		F6C6739322B7DA8A00149986 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8CFE438C68174AF491B33132 /* RNCAsyncStorage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNCAsyncStorage;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -407,6 +415,7 @@
 		334784B4520E4DEEA004C171 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		3CC9C0BE21214FFA95EF9910 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		41D4097FCDD14AC89F4DEAEE /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
+		4741C73437B5484F986745CF /* libRNCAsyncStorage.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNCAsyncStorage.a; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		60EB850F9FC94D499D066469 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		7605BD112968460B9C692CE5 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
@@ -415,6 +424,7 @@
 		844C73CD808C4107B206C55B /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		871F973DA3F34CB7A4CFE2DE /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
 		87A5CAAB69774D9DB6575D5C /* libRNGestureHandler.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNGestureHandler.a; sourceTree = "<group>"; };
+		8CFE438C68174AF491B33132 /* RNCAsyncStorage.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNCAsyncStorage.xcodeproj; path = "../node_modules/@react-native-community/async-storage/ios/RNCAsyncStorage.xcodeproj"; sourceTree = "<group>"; };
 		9657F3C88D054161A5F0E456 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		B54D7008129E4CDAA7ADFEB7 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
@@ -428,8 +438,6 @@
 		F6219657229F127E009B4B92 /* WizzerApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WizzerApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		F6219658229F127F009B4B92 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		F73444159A8C4C8E8E2168D8 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
-		8CFE438C68174AF491B33132 /* RNCAsyncStorage.xcodeproj */ = {isa = PBXFileReference; name = "RNCAsyncStorage.xcodeproj"; path = "../node_modules/@react-native-community/async-storage/ios/RNCAsyncStorage.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		4741C73437B5484F986745CF /* libRNCAsyncStorage.a */ = {isa = PBXFileReference; name = "libRNCAsyncStorage.a"; path = "libRNCAsyncStorage.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -747,6 +755,7 @@
 				F41E7C96B652430096DF543C /* libRNGestureHandler-tvOS.a */,
 				41D4097FCDD14AC89F4DEAEE /* libRNVectorIcons.a */,
 				D919B7BE66C94F7B94C404D5 /* libRNVectorIcons-tvOS.a */,
+				4741C73437B5484F986745CF /* libRNCAsyncStorage.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -764,6 +773,14 @@
 			children = (
 				F6419A9A229DB729000ADF8D /* libRNGestureHandler.a */,
 				F6419A9C229DB729000ADF8D /* libRNGestureHandler-tvOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F6C6739022B7DA8A00149986 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F6C6739422B7DA8A00149986 /* libRNCAsyncStorage.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -934,6 +951,10 @@
 				{
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+				},
+				{
+					ProductGroup = F6C6739022B7DA8A00149986 /* Products */;
+					ProjectRef = 8CFE438C68174AF491B33132 /* RNCAsyncStorage.xcodeproj */;
 				},
 				{
 					ProductGroup = F6419A92229DB728000ADF8D /* Products */;
@@ -1249,6 +1270,13 @@
 			remoteRef = F6419A9B229DB729000ADF8D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		F6C6739422B7DA8A00149986 /* libRNCAsyncStorage.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNCAsyncStorage.a;
+			remoteRef = F6C6739322B7DA8A00149986 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -1489,7 +1517,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wizzerapp;
 				PRODUCT_NAME = WizzerApp;
 				SWIFT_OBJC_BRIDGING_HEADER = "WizzerApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1518,7 +1546,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wizzerapp;
 				PRODUCT_NAME = WizzerApp;
 				SWIFT_OBJC_BRIDGING_HEADER = "WizzerApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
