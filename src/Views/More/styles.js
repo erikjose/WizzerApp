@@ -35,6 +35,8 @@ export const SectionTitle = styled.View`
   padding: 5px 15px;
 `;
 
-export const SectionItem = styled.TouchableOpacity`
+export const SectionItem = styled.TouchableOpacity.attrs({
+  activeOpacity: 1,
+})`
   padding: 10px 15px;
 `;

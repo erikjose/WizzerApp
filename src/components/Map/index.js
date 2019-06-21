@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import MapView, { Marker } from 'react-native-maps';
-import { NavigationEvents } from 'react-navigation';
+import { NavigationEvents, withNavigation } from 'react-navigation';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as TheActions from '~/store/actions';
-import { withNavigation } from 'react-navigation';
+
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { colors, metrics } from '~/styles';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -28,8 +28,6 @@ class MapGoogle extends Component {
     initialScrollIndex: null,
   };
 
-
-
   render() {
     const {
       uri, setBounds, navigation, property, filters, getProperties,
@@ -37,7 +35,9 @@ class MapGoogle extends Component {
     const { showList, initialScrollIndex } = this.state;
     return (
       <Container>
-        <NavigationEvents onDidFocus={() => this.setState({showList: false, initialScrollIndex: null})} />
+        <NavigationEvents
+          onDidFocus={() => this.setState({ showList: false, initialScrollIndex: null })}
+        />
         <MapView
           style={styles.mapView}
           region={uri.region}

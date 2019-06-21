@@ -52,6 +52,18 @@ class Property extends Component {
     });
   };
 
+  handlerShare = async (property) => {
+    const url = `https://www.wizzer.com.br/anuncio/${property.advert_id}?query=${
+      property.property.city
+    }&transaction=comprar,alugar`;
+    Share.share({
+      title: 'Wizzer',
+      message: url,
+      url: 'www.wizzer.com.br',
+      // subject: 'Subject',
+    });
+  };
+
   render() {
     const { isUp } = this.state;
     const { navigation } = this.props;
@@ -62,7 +74,7 @@ class Property extends Component {
           <BackButton onPress={() => navigation.pop()}>
             <Icon name="arrow-left" size={25} style={styles.backIcon} />
           </BackButton>
-          <ShareButton onPress={() => Share.share(shareOptions)}>
+          <ShareButton onPress={() => this.handlerShare(property)}>
             <Icon name="share-outline" size={25} style={styles.shareIcon} />
           </ShareButton>
         </Header>

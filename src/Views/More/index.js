@@ -20,10 +20,10 @@ const More = () => (
       <SectionTitle>
         <Text style={styles.text}>Sobre o Wizzer</Text>
       </SectionTitle>
-      <SectionItem>
+      <SectionItem onPress={() => Linking.openURL('https://www.wizzer.com.br/')}>
         <Text style={styles.text}>Termos de uso</Text>
       </SectionItem>
-      <SectionItem>
+      <SectionItem onPress={() => Linking.openURL('https://www.wizzer.com.br/')}>
         <Text style={styles.text}>Política de privacidade</Text>
       </SectionItem>
       <SectionTitle>
@@ -35,7 +35,7 @@ const More = () => (
       <SectionTitle>
         <Text style={styles.text}>Conta</Text>
       </SectionTitle>
-      <SectionItem>
+      <SectionItem onPress={() => Linking.openURL('https://www.wizzer.com.br/')}>
         <Text style={styles.text}>Cadastre-se</Text>
       </SectionItem>
     </Content>

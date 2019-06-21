@@ -20,6 +20,10 @@ export const styles = StyleSheet.create({
   backIcon: {
     color: colors.darker,
   },
+  maskInput: {
+    flex: 1,
+    paddingHorizontal: 5,
+  },
 });
 
 export const Container = styled.View`
